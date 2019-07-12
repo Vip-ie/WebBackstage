@@ -33,6 +33,11 @@ Read the Docs: 文档简化
 插入多上代码方法如下:
 	在需要插入多行代码前插入:  .. prompt:: bash $
 
+.. prompt:: bash
+
+    cd /path/to/project
+    mkdir docs
+
 
 3. 其他文件
 ----------
