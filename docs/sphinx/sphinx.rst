@@ -32,19 +32,3 @@ Read the Docs: 文档简化
 
   帮助您为项目创建出色的文档。
 
-
-* **Python 基础**:
-  :doc:`With Sphinx <intro/getting-started-with-sphinx>` |
-  :doc:`With MkDocs <intro/getting-started-with-mkdocs>`
-
-* **Python 中级**:
-  :doc:`Import guide <intro/import-guide>`
-
-
-.. toctree::
-   :maxdepth: 2
-   :hidden:
-   :caption: First steps
-
-   intro/getting-started-with-sphinx
-   intro/getting-started-with-mkdocs
