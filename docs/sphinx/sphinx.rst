@@ -87,3 +87,5 @@ Assuming you have Python already, `install Sphinx`_:
 
     We only consider non pre-releases for the ``stable`` version of your
     documentation.
+
+    
