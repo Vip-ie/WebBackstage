@@ -35,13 +35,6 @@ Read the Docs: 文档简化
 插入多上代码方法如下:
 	在需要插入多行代码前插入:  .. prompt:: bash $
 
-Assuming you have Python already, `install Sphinx`_:
-
-.. prompt:: bash $
-
-    pip install sphinx
-    cd /path/to/project
-    mkdir docs
 
 
 3. 其他文件
@@ -88,4 +81,3 @@ Assuming you have Python already, `install Sphinx`_:
     We only consider non pre-releases for the ``stable`` version of your
     documentation.
 
-    
