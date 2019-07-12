@@ -16,6 +16,8 @@ Read the Docs: 文档简化
 
 
 .. prompt:: bash $
+	make html
+	
 	`添加连接`_   添加连接方法
 
 	添加连接内容信息
