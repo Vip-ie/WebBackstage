@@ -38,4 +38,5 @@ Read the Docs: 文档简化
 插入多上代码方法如下:
 
 .. prompt:: bash $
+
 	``.. prompt:: bash $``
