@@ -38,14 +38,14 @@ Python Web
 Python基础内容
 
 * **Python基础**:
-  :doc:`pythonweb`
+  :doc:`pythonw_eb`
 
 .. toctree::
    :maxdepth: 2
    :hidden:
    :caption: PythonWeb
 
-   python_web/python_web
+   python_web/pythonweb
 
 
 Pytho中级
