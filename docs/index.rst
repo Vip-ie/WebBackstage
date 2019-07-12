@@ -32,6 +32,22 @@ Python基础内容
    python_basis/python_basis
 
 
+Python Web
+-----------
+
+Python基础内容
+
+* **Python基础**:
+  :doc:`pythonweb`
+
+.. toctree::
+   :maxdepth: 2
+   :hidden:
+   :caption: PythonWeb
+
+   python_web/python_web
+
+
 Pytho中级
 -----------
 
