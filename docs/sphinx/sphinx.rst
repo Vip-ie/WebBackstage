@@ -32,7 +32,7 @@ Read the Docs: 文档简化
 
   帮助您为项目创建出色的文档。
 
-```
 
-
-```
+插入多上代码方法如下:
+.. prompt:: bash $
+	.. prompt:: bash $
