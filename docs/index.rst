@@ -5,10 +5,6 @@ WebBackstage
    :maxdepth: 2
    :caption: Contents:
 
-   Sphinx
-   Python
-
-
-
-Indices and tables
-==================
+   0.Sphinx
+   1.Python
+   1.00001Python_block
