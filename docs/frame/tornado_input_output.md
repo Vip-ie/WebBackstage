@@ -145,7 +145,7 @@ class MainHandler(tornado.web.RequestHandler):
 ```
 当调用`finish`之后，请求处理完成，类似于函数中的 return (注意：请求当中不能出现return) ，其后不能再执行`write `，否则会报错
 
-### 2.5 输出总结
+### 2.5 write输出总结
 1. render:`返回HTML文件`
 2. write:接受`bytes` 、`unicode`和`dict` 对象，保存到 缓冲区请求处理完成输出到浏览器
 3. redirect:跳转到指定的`路由` 
