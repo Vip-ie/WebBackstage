@@ -1,6 +1,11 @@
 第一章 数据类型
 =============
 
+.. note::
+    数据类型详细介绍`PEP 440`_. This spec allows "normal" version numbers like ``1.4.2`` as
+    well as pre-releases. An alpha version or a release candidate are examples
+    of pre-releases and they look like this: ``2.0a1``.
+
 1.1 数字
 -------
 数值类型
