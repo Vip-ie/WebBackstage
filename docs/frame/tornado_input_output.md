@@ -327,14 +327,7 @@ URL
 
 刚才我们已经知道了如何去启动Tornado，也知道了如何通过命令行的交互来获取参数，那Tornado如何和浏览器做交互呢？
 
-## 5 输出
-从Tornado输出到浏览器我们可以使用 `write`
 
-```
-class MainHandler(tornado.web.RequestHandler):
-    def get(self):
-        self.write('hello')
-```
 
 ## 6 输入
 
