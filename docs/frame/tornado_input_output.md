@@ -3,7 +3,7 @@ Tornado可以通过write把字符串输出到浏览器，除此之外，write还
 
 ## 2 wirte
 **输出总结**
->**write**三种类型：
+>**1 write**三种类型：
 >>1.字符串
 
 >>2.bytes
@@ -12,16 +12,16 @@ Tornado可以通过write把字符串输出到浏览器，除此之外，write还
 
 >>4.json字符串
 
->**flush:**
+>**2 flush:**
 >>从缓存区刷到浏览器
 
->**finis：**
+>**3 finis：**
 >>结束写入，后面代码依然执行，但是不会写入到浏览器
 
->**render:**
+>**4 render:**
 >返回一个HTML页面
 
->**rendirect：**
+>**5 rendirect：**
 >路由跳转
 
 **接受对象**
