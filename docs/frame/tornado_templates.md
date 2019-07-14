@@ -1,10 +1,10 @@
 # 第三章 模板
 模板就是html文件，只是其中加入了模板语法，需要服务器的渲染，才能正常显示数据
-## 4.1 模板
+## 1 模板
 1. 之前我们通过render可以返回一个html页面，不过那都是固定的页面，固定的数据，但是如果数据是不确定的，是会不断改变的，该怎么做呢？
 2. 是否可以先把页面写好，然后预留出固定的位置，在需要的时候再填入数据即可？
 
-### 4.1.1 配置路径
+### 1.1 配置路径
 在 application 中配置模板文件和静态文件的路径：
 ```
 app = tornado.web.Application(
@@ -12,7 +12,7 @@ app = tornado.web.Application(
 )
 ```
 
-### 4.1.2 模板调用案例
+### 1.2 模板调用案例
 模板使用后台代码示例
 ```
 class TemplatesHandler(tornado.web.RequestHandler):
@@ -72,9 +72,9 @@ app = tornado.web.Application(
 </html>
 ```
 
-## 4.2 模板语法
+## 2 模板语法
 既然有了模板，那模板的语法规则是怎样的呢？
-### 4.2.1 模板符号
+### 2.1 模板符号
 `{{ expression }}`用 {{ expression }} 中间是任何 python 表达式，或者是一个变量
 示例
 test.py代码
@@ -118,11 +118,11 @@ templates.html代码
 {#! time.time() #}}
 ```
 
-### 4.2.2 控制语句 if判断
+### 2.2 控制语句 if判断
 
 在模板中可以使用 `if` 判断,最后需要以 `{% end %}` 结尾
 
-#### 4.2.2.1 if判断示例
+#### 2.2.1 if判断示例
 test.py代码
 ```
 class TemplatesHandler(tornado.web.RequestHandler):
@@ -165,8 +165,8 @@ templates.html代码
 {% end %}
 
 ```
-### 4.2.3 循环语句 for and while
-#### 4.2.3.1 for循环
+### 2.3 循环语句 for and while
+#### 2.3.1 for循环
 在`tornado` 模板中可以使用 for 循环,最后需要以 `{% end %}`结尾
 
 test.py代码
