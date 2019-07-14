@@ -44,7 +44,7 @@ Python Web
 Python基础内容
 
 * **Python基础**:
-  :doc:`pythonw_eb`
+  :doc:`pythonw_web`
 
 .. toctree::
    :maxdepth: 2
