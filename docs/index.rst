@@ -29,7 +29,7 @@ Python基础内容
    :hidden:
    :caption: Python基础
 
-   python_basis/python_basis
+   python_basis/python_database_class
    python_basis/python_lj
    python_basis/python_function
    python_basis/python_class
