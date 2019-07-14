@@ -154,9 +154,10 @@ class MainHandler(tornado.web.RequestHandler):
 ## 3 获取请求信息
 1. 在服务器可以知道是谁在访问吗？
 2. 可以的话该如何查看呢？
+
 **总结**
->request:
->>1.remote_ip(客户端的ip地址)
+>1. request:
+>>1. remote_ip(客户端的ip地址)
 
 ### 3.1 self.request
 1. `method`HTTP请求方法，例如GET 或 POST 
