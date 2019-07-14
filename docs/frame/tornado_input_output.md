@@ -306,6 +306,201 @@ URL:`http://127.0.0.1:8000/stu/20170001/budong`
 
 -------------------------------------------------------------------------------
 
+## 3 请求与响应
+### 3.1 请求与响应
+浏览器和服务器之间是怎么沟通的？
+
+浏览器`发起请求` --> 服务器`开始处理请求` -->服务器`处理结束`-->返回处理结果-->浏览器`展示页面`
+
+### 3.2 请求
+浏览器在发送请求的时候，会发送具体的请求信息，由请求行，请求消息头，请求正文
+
+### 3.3 请求行
+请求行,位于第一行，包含内容为：
+1. `Method`:一般为GET或者POST
+2. `Path-to-resource`:请求的资源的URI
+3. `Http/Version-number`:客户端使用的协议的版本，HTTP/1.0和HTTP/1/1
+
+### 3.4 请求消息头
+向服务器传递附加信息
+1. `Accept`:浏览器可以接受的MIME类型
+2. `Acept-Charset`:浏览器支持的字符集，如gbk,utf-8 
+3. `Accept-Encoding`:浏览器能够解码的数据压缩方式, 如：gzip 
+4. `Accept-language`:所希望的语言
+5. `Host`:请求的主机和端口
+6. `User-Agent`:通知服务器，浏览器类型
+7. `Content-Lenght`:表示请求消息正文的长度
+8. `Connection`:表示是否需要持久连接（Keep-alive）
+9. `Cookie`:这是最重要的请求信息之一（会话有关）
+
+### 3.5 请求正文
+请求具体内容，比如：URL中传入的参数，form表单里面的内容等等
+
+### 3.6 响应信息
+响应信息为服务器的处理结果。主要包含：响应行，响应消息头，响应正文
+
+### 3.7 响应头
+1. `Server`:通知客户端，服务器的类型
+2. `Content-Encoding`:响应正文的压缩编码方式。常用的是gzip
+3. `Content-Length`:通知客户端响应正文的数据大小 
+4. `ontent-Type`:通知客户端响应正文的MIME类型 
+5. `Content-Disposition`:通知客户端，以下载的方式打开资源
+
+### 3.8 响应行
+响应行主要报错如下信息：
+1. `Http/Version-number`:服务器用的协议版本 
+2. `message`:响应码描述。例如200的描述为OK
+3. `Statuscode`:响应码。代表服务器处理的结果的一种表示，常用的响应码有： 
+>* 200：正常 　　　　　　
+>* 302/307：重定向 　　　　　　
+>* 304:服务器的资源没有被修改 　　　　　　
+>* 404：请求的资源不存在 　　　　　　
+>* 500：服务器报错了 
+
+### 3.9 响应正文
+具体的响应内容，如html，JavaScript 等数据内容
+
+### 3.10 设置响应头
+1. 在请求与响应当中，请求是浏览器设置的，在服务器端只能接受，无法改变，那响应头可以改变吗？
+2. 如果可以改变响应头，应该怎么操作呢？
+
+### 3.11 set_header
+set_header 可以设置响应头
+```
+class HeaderHandler(tornado.web.RequestHandler):
+    def get(self):
+        self.write('set_header')
+        self.set_header('aaa','1111')
+        self.set_header('bbb','222')
+        self.set_header('bbb','333')
+```
+设置RequestHeaders时候，如果set_header设置多个相同名称和值后，只有最有一个值生效
+
+### 3.12 add_header
+add_header 可以向响应头里面添加信息，而且是可以出现相同信息
+```
+class HeaderHandler(tornado.web.RequestHandler):
+    def get(self):
+        self.write('add_header')
+        self.add_header('bbb','333')
+        self.add_header('bbb','333')
+```
+设置RequestHeaders时候，如果add_header同时设置多个相同名称和多个值，添加多个同名和多个值
+
+### 3.13 clear_header
+clear_header 可以撤销给定的响应头信息
+```
+class HeaderHandler(tornado.web.RequestHandler):
+    def get(self):
+        self.write('clear_header')
+        self.add_header('abc','555')
+        self.add_header('ccc','555')
+        self.clear_header('abc')
+```
+设置RequestHeaders时候，如果clear_header设置了清除名称，在响应头内就无法看到清除的响应头
+
+### 3.14  设置响应头总结
+1. 必须掌握:set_header的作用和用法
+2. 必须掌握:add_header的作用和用法
+3. 必须掌握:clear_header的作用和用法
+
+### 3.15 发送错误吗
+我们可以给响应头设置信息，那我们可以不可以主动地给浏览器报错呢？
+### 3.16 send_error
+```
+class SendHandler(tornado.web.RequestHandler):
+    def get(self):
+        self.write('send_error') 
+        self.send_error(404) #主动抛出一个错误
+```
+
+使用 send_error 时需要注意：如果已经执行了 flush，则不能再执行 send_error，因此该方法将简单地终止响应
+```
+class SendHandler(tornado.web.RequestHandler):
+    def get(self):
+        self.write('send_error')
+        self.flush()#刷新self.write('send_error')后无法在刷新self.send_error(404)到浏览器
+        self.send_error(404) #主动抛出一个错误
+```
+如果输出已写入但尚未刷新，则将其丢弃并替换为错误页面
+### 3.16 重写 write_error
+1. send_error  在其底层调用的是 write_error
+2. 因此只要重写此方法，就可以实现自定义的的错误页面
+```
+class NotFoundHandler(tornado.web.RequestHandler):
+    def write_error(self, status_code, **kwargs):
+        self.write('status_code:%s' % status_code)
+```
+
+### 3.17 未定义路由处理
+例如在浏览器输入一个不存在的路由时候就需要主动抛出一个错我
+```
+class NotFoundHandler(tornado.web.RequestHandler):
+    def get(self, *args, **kwargs):
+        self.send_error(404)
+    def write_error(self, status_code, **kwargs):
+        self.render('error_notfound.html') #主动抛出一个自定义错误信息页面
+
+app = tornado.web.Application(
+    handlers = [
+        (r'/(.*)',NotFoundHandler),
+    ],
+    template_path = 'templates',
+)
+```
+
+### 3.18 状态码
+![](img/status.jpg)
+### 3.19 发送错误码总结
+1. 必须掌握:`send_error` 的作用和用法
+2. 必须掌握:`write_error` 的作用和用法
+3. 了解:自定义错误页面的实现方法
+
+### 3.20 请求处理过程
+Tornado在接到请求之后，会做些什么事情呢？
+### 3.21 Tornado 调用顺序
+Tornado 在接受到请求之后，后按照此顺序选择响应的方法来执行
+```
+class IndexHandler(tornado.web.RequestHandler):
+    def set_default_headers(self):
+        print('---set_default_headers---: 设置header')
+
+    def initialize(self):
+        print('---initialize---: 初始化')
+
+    def prepare(self):
+        print('---prepare---: 准备工作')
+
+    def get(self):
+        self.write('---get---: 处理get请求' + '<br>')
+
+    def post(self):
+        self.write('---post---: 处理post请求' + '<br>')
+
+    def write_error(self, status_code, **kwargs):
+        print('---write_error: 处理错误')
+    def on_finish(self):
+        print('---on_finish---: 结束，释放资源')
+```
+### 3.4.2 请求处理过程总结
+1. 大致了解接受到请求之后的方法调用顺序
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## 3 输入输出总结
 ### 3.1 输出
