@@ -1,7 +1,13 @@
 # 第二章 输入输出
 Tornado可以通过write把字符串输出到浏览器，除此之外，write还可以输出到浏览器呢？
 
-## 2 wirte
+## 2 输出`wirte`
+从Tornado输出到浏览器我们可以使用 `write`
+```
+class MainHandler(tornado.web.RequestHandler):
+    def get(self):
+        self.write('hello')
+```
 **输出总结**
 >**1 write**三种类型：
 >>1.字符串
@@ -24,7 +30,7 @@ Tornado可以通过write把字符串输出到浏览器，除此之外，write还
 >**5 rendirect：**
 >路由跳转
 
-**wirte接受对象**
+**`wirte`接受对象**
 
 write可以接受`bytes` 、`unicode`字符串和`dict`这三个对象如果接受的是字典，会把字典转化成 JSON 字符串，因此write也可以接受 JSON 字符串。
 
