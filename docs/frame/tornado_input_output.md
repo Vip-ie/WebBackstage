@@ -1,7 +1,9 @@
 # 第二章 输入输出
-Tornado可以通过write把字符串输出到浏览器，除此之外，write还可以输出到浏览器呢？
 
 ## 1 输出`wirte`
+
+Tornado可以通过write把字符串输出到浏览器，除此之外，write还可以输出到浏览器呢？
+
 从Tornado输出到浏览器我们可以使用 `write`
 ```
 class MainHandler(tornado.web.RequestHandler):
