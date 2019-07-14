@@ -191,7 +191,7 @@ class ReqHandler(tornado.web.RequestHandler):
         self.write('method : ' + self.request.method)
 ```
 
-## 3 输入
+## 4 输入
 输入`get_argument`可以获取 URL 中的参数，除此之外，还能获取到其他地方的数据吗?
 
 **输入总结**
@@ -208,7 +208,7 @@ class ReqHandler(tornado.web.RequestHandler):
 
 
 
-### 2.2.1 get_argument与get_arguments区别
+### 4.1.1 get_argument与get_arguments区别
 1. get_argument一次只能获取一个元素，如果有多个元素获取最后一个元素。
 2. get_arguments 获取一个列表元素，可以获取多个元素。
 ```
@@ -224,7 +224,7 @@ URL传一个参数:`http://127.0.0.1:8080/get?name=leva`
 
 URL传多个参数:`http://127.0.0.1:8080/get?name=leva&name=rave`
 
-### 2.2.2 get_argument通过HTML提交数据到后台
+### 4.1.2 get_argument通过HTML提交数据到后台
 ```
 class GetHandler(tornado.web.RequestHandler):
     def get(self):
@@ -259,7 +259,7 @@ html文件代码
 </html>
 ```
 
-### 2.2.3 URL传参
+### 4.1.3 URL传参
 **URL传参总结**
 ```
 ?k1=v1&k2=v2&k3=v3
@@ -311,7 +311,7 @@ URL
 
 `http://127.0.0.1:8000/stu/20170001/budong`
 
-### 2.2.4 URL传参总结
+### 4.1.4 URL传参总结
 1. 查询字符串: 查询字符串通过在路由后面添加  ? 在加上参数名和参数值来传入参数
 2. REST:通过 / 来分割每个参数，关键在于 get 方法定义
 
@@ -322,7 +322,7 @@ URL
 
 刚才我们已经知道了如何去启动Tornado，也知道了如何通过命令行的交互来获取参数，那Tornado如何和浏览器做交互呢？
 
-## 2 输出
+## 5 输出
 从Tornado输出到浏览器我们可以使用 `write`
 
 ```
@@ -331,7 +331,7 @@ class MainHandler(tornado.web.RequestHandler):
         self.write('hello')
 ```
 
-## 3 输入
+## 6 输入
 
 ```
 class TestIndexHandler(tornado.web.RequestHandler):
