@@ -8,14 +8,18 @@ write
 >>2.bytes
 >>3.字典
 >>4.json字符串
+
 >flush:
 >>从缓存区刷到浏览器
+
 >finis：
 >>结束写入，后面代码依然执行，但是不会写入到浏览器
+
 render:
 >返回一个HTML页面
-rendirect：
+
 >路由跳转
+rendirect：
 
 
 刚才我们已经知道了如何去启动Tornado，也知道了如何通过命令行的交互来获取参数，那Tornado如何和浏览器做交互呢？
