@@ -35,11 +35,9 @@ class TestIndexHandler(tornado.web.RequestHandler):
 可以通过:get_argument和get_arguments来获取参数值
 
 ## 4 输入输出总结
-* 输出
-
+### 4.1 输出
 1. 必须掌握:write方法
 
-* 输入
-
+### 4.2 输入
 1. 必须掌握:get_argument和get_arguments
 2. 必须掌握:URL传入参数的方法
