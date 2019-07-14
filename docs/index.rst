@@ -110,6 +110,7 @@ Python框架比较不错的有Tornado、Django。
    frame/Cookie_Session
    frame/Websocket
    frame/Asynchronous
+   frame/deploy
 
 
    frame/Django
