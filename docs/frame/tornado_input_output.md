@@ -211,7 +211,7 @@ URL传一个参数:`http://127.0.0.1:8080/get?name=leva`
 
 URL传多个参数:`http://127.0.0.1:8080/get?name=leva&name=rave`
 
-### 4.2.1 get_argument通过HTML提交数据到后台
+### 2.3 get_argument通过HTML提交数据到后台
 ```
 class GetHandler(tornado.web.RequestHandler):
     def get(self):
@@ -246,7 +246,7 @@ html文件代码
 </html>
 ```
 
-### 4.2.2 URL传参
+### 2.4 URL传参
 **URL传参总结**
 ```
 ?k1=v1&k2=v2&k3=v3
@@ -298,20 +298,15 @@ URL
 
 `http://127.0.0.1:8000/stu/20170001/budong`
 
-### 2.2.3 URL传参总结
+### 2.5 URL传参总结
 1. 查询字符串: 查询字符串通过在路由后面添加  ? 在加上参数名和参数值来传入参数
 2. REST:通过 / 来分割每个参数，关键在于 get 方法定义
 
-
-刚才我们已经知道了如何去启动Tornado，也知道了如何通过命令行的交互来获取参数，那Tornado如何和浏览器做交互呢？
-
-
-
-## 4 输入输出总结
-### 4.1 输出
+## 3 输入输出总结
+### 3.1 输出
 1. 必须掌握:write方法
 
-### 4.2 输入
+### 3.2 输入
 1. 必须掌握:get_argument和get_arguments
 2. 必须掌握:URL传入参数的方法
 
