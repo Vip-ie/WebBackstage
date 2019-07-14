@@ -1,9 +1,8 @@
 # 第二章 输入输出
 
-## 2 输入和输出
 刚才我们已经知道了如何去启动Tornado，也知道了如何通过命令行的交互来获取参数，那Tornado如何和浏览器做交互呢？
 
-### 2.1 输出
+## 2 输出
 从Tornado输出到浏览器我们可以使用 `write`
 
 ```
@@ -12,7 +11,7 @@ class MainHandler(tornado.web.RequestHandler):
         self.write('hello')
 ```
 
-### 2.2 输入
+## 3 输入
 
 ```
 class TestIndexHandler(tornado.web.RequestHandler):
@@ -35,13 +34,12 @@ class TestIndexHandler(tornado.web.RequestHandler):
 
 可以通过:get_argument和get_arguments来获取参数值
 
-### 2.3 输入输出总结
+## 4 输入输出总结
 * 输出
 
-必须掌握:write方法
+1. 必须掌握:write方法
 
 * 输入
 
-必须掌握:get_argument和get_arguments
-
-必须掌握:URL传入参数的方法
+1. 必须掌握:get_argument和get_arguments
+2. 必须掌握:URL传入参数的方法
