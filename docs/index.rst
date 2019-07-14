@@ -36,6 +36,8 @@ Python基础内容
    python_basis/python_file
    python_basis/python_abnormal
    python_basis/python_regular
+   python_basis/python_abnormal1
+
 
 
 Python Web
