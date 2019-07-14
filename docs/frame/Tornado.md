@@ -2,8 +2,8 @@
 
 
 ## 1 Tornado的安装
-* 启动虚拟环境命令`workon projectname`
-* 安装Tornado命令`pip install tornado`
+### 1.1 启动虚拟环境命令`workon projectname`
+### 1.2 安装Tornado命令`pip install tornado`
 
 ## 2 路由
 客户端访问服务器可以看成是：客户端读取服务器资源的一个过程，路由表就指定了具体访问什么资源
