@@ -1,4 +1,11 @@
 # 第二章 输入输出
+## 输入输出总结
+### 输出
+1. 必须掌握:write方法
+
+### 输入
+1. 必须掌握:get_argument和get_arguments
+2. 必须掌握:URL传入参数的方法
 
 ## 1 输出`wirte`
 
@@ -482,7 +489,7 @@ class IndexHandler(tornado.web.RequestHandler):
     def on_finish(self):
         print('---on_finish---: 结束，释放资源')
 ```
-### 3.4.2 请求处理过程总结
+### 3.22 请求处理过程总结
 1. 大致了解接受到请求之后的方法调用顺序
 
 
@@ -502,13 +509,7 @@ class IndexHandler(tornado.web.RequestHandler):
 
 
 
-## 3 输入输出总结
-### 3.1 输出
-1. 必须掌握:write方法
 
-### 3.2 输入
-1. 必须掌握:get_argument和get_arguments
-2. 必须掌握:URL传入参数的方法
 
 -------------------------------------------------------------------------------
 
