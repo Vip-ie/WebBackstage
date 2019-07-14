@@ -26,9 +26,7 @@ Tornado可以通过write把字符串输出到浏览器，除此之外，write还
 
 **wirte接受对象**
 
-write可以接受`bytes` 、`unicode`字符串和`dict`这三个对象
-
-如果接受的是字典，会把字典转化成 JSON 字符串，因此write也可以接受 JSON 字符串
+write可以接受`bytes` 、`unicode`字符串和`dict`这三个对象如果接受的是字典，会把字典转化成 JSON 字符串，因此write也可以接受 JSON 字符串。
 
 bytes例
 ```
