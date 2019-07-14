@@ -30,6 +30,12 @@ Python基础内容
    :caption: Python基础
 
    python_basis/python_basis
+   python_basis/python_lj
+   python_basis/python_function
+   python_basis/python_class
+   python_basis/python_file
+   python_basis/python_abnormal
+   python_basis/python_regular
 
 
 Python Web
