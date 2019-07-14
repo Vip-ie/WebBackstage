@@ -191,7 +191,7 @@ templates.html代码
 {% end%}
 ```
 
-#### 4.2.3.2 while循环
+#### 2.3.2 while循环
 在 tornado 模板中可以使用 `while` 循环,最后需要以 `{% end %}` 结尾
 
 test.py代码
@@ -210,20 +210,20 @@ templates.html代码
 {% end %}
 ```
 
-### 4.2.4 模板语法总结
+### 2.4 模板语法总结
 1. `{{ … }}`:此符号中放入任意 python 表达式，或者模板中的变量
 2. `{% … %} {% end %}`:此符号中放入模板中的命令，比如`if 、for`和`while`等需要注意的是，使用`if`等命令是，需要加上`{% end%}`除此之外，异常处理`try`也可以在模板中使用，但是这样做会让模板变得像 python 模块一样，因此并不建议大家这么做
 3. `{# #}`:模板中的注释语句，可以让模板中指令不执行
 
-### 4.2.5 模板符号总结
+### 2.5 模板符号总结
 1. 必须掌握:`{{、{%、{#`三个符号的作用
 2. 必须掌握:`{% if %} … {% end %}`的用法
 3. 必须掌握:`{% for … %} … {% end %}{% while … %} … {% end %}`的用法
 
-## 4.3 模板转义
+## 3 模板转义
 通过模板，可以把数据动态的添加到页面，如果添加的值是一段html代码的话，会不会被执行呢？
 
-### 4.3.1 转义
+### 3.1 转义
 * 页面并没有解析，只是当作一个字符串，直接在页面上打印出来
 * tornado默认是自动的转义，传入的数据都会当作字符串，不会被浏览器解析
 
@@ -240,7 +240,7 @@ templates.html代码
 ```
 
 
-### 4.3.2 raw 局部去掉转义
+### 3.2 raw 局部去掉转义
 raw 可以自模板中去掉转义，让 tornado 在渲染的时候不去转义变量
 
 test.py代码
@@ -256,7 +256,7 @@ templates.html代码
 {% raw atga %} <!-- 去掉转义-->
 ```
 
-### 4.3.3  escape 局部开启转义
+### 3.3  escape 局部开启转义
 在开启模板不转义之后，可以使用 escape 来添加转义
 
 test.py代码
@@ -273,7 +273,7 @@ templates.html代码
 {{ escape(atga)}} # 开启某一条局部转义
 ```
 
-### 4.3.4 模板去掉转义
+### 3.4 模板去掉转义
 `autoescape None`在模板中添加上面代码之后，当前模板不再转义
 ```
 <!DOCTYPE html>
@@ -291,14 +291,14 @@ templates.html代码
 </html>
 ```
 
-### 4.3.5 全局去掉转义
+### 3.5 全局去掉转义
 在 Application 中添加如下配置：
 ```
 autoescape=None,
 ```
 `autoescape`去掉整个项目的转义，配置之后，整个项目中的模板不再转义
 
-### 4.3.6 模板转义总结
+### 3.6 模板转义总结
 1. 局部去转义 必须掌握:raw的用法和作用
 2. 模板去转义 必须掌握:模板去转义的方法和escape作用和用法
 3. 全局去转义 必须掌握:Tornado全局去转义的方法
@@ -309,11 +309,11 @@ autoescape=None,
 * 全局:`autoescape=None`在 Application 中添加此配置项，则整个项目不再转义
 
 
-## 4.4 静态文件引用
+## 4 静态文件引用
 模板中如何引用图片等静态文件呢？
 
 
-### 4.4.1 配置静态文件路径
+### 4.1 配置静态文件路径
 Application
 ```
 app = tornado.web.Application(
@@ -321,26 +321,26 @@ app = tornado.web.Application(
 )
 ```
 
-### 4.4.2 两种引入方式
+### 4.2 两种引入方式
 ```
 <img src="static/images/c.jpg" width="250" height="250">
 <img src="{{ static_url('images/c.jpg') }}" width="250" height="250"> 
 ```
 
-### 4.4.3 自动查找
+### 4.3 自动查找
 在 Tornado 模板中，static 是个关键词，能够自动替换成 static_path 后的内容
 
-### 4.4.4 添加版本号
+### 4.4 添加版本号
 `<img src="{{ static_url('images/2.jpg') }}" width="250" height="250"> `
 使用此方法时，Tornado会自动地给静态文件添加版本号，如果版本号更改了，浏览器会自动的缓存新的静态文件`/static/images/2.jpg?v=c8b24e1f6f36c65833b9fade57f5d7b7`
 
-### 4.4.5 静态文件的引用
+### 4.5 静态文件的引用
 必须掌握:tornado中静态文件来那两种引入方式
 
-## 4.5 模板继承
+## 5 模板继承
 在浏览网页的时候，可以发现页面上很多部分其实是一样的，那这些部分是在每个页面都写一次吗？
 
-### 4.5.1 父模板
+### 5.1 父模板
 1. extends:`{% extends *filename* %}`继承模板，在子模板中会把父模板的所有内容都继承到子模板中，减少大量重复代码
 2. block:`{% block *name* %}...{% end %}被词语句包裹的代码块在子模板中可以被重写，覆盖父模板中的
 
@@ -361,7 +361,7 @@ base.html代码
 </html>
 ```
 
-### 4.5.2 子模板
+### 5.2 子模板
 subtemplate.html代码
 ```
 {% extends ./base.html %} #继承父模板
@@ -374,7 +374,7 @@ subtemplate.html代码
 {% end %}
 ```
 
-#### 4.5.2.1 子模板文件
+#### 5.2.1 子模板文件
 include.html代码
 ```
 <br>
@@ -382,7 +382,7 @@ this is tornado templates include
 <br>
 ```
 
-#### 4.5.2.3 子模板include引用
+#### 5.2.2 子模板include引用
 `{% include *filename*%}`include 可以导入一些其他的模板文件，一般使用include 的时候，模板文件中不使用block块 
 
 subtemplate.html代码
@@ -399,7 +399,7 @@ subtemplate.html代码
 {% end %}
 ```
 
-### 4.5.3 模板继承总结
+### 5.3 模板继承总结
 1. 必须掌握:`extends` 的用法和作用
 2. 必须掌握:`block` 的用法和作用
 3. 必须掌握:`include` 的用法和作用
@@ -411,9 +411,9 @@ subtemplate.html代码
     {% include ./include.html %}# 在一个继承模板内添加子页面
 ```
 
-## 4.6 函数和类导入
+## 6 函数和类导入
 通过前面我们了解到模板可以传入函数和类，那具体有哪些方法可以做到呢？
-### 4.6.1 渲染时导入
+### 6.1 渲染时导入
 在 Handler 中渲染模板时传入
 
 test.py代码
@@ -441,10 +441,10 @@ subtemplate.html代码
    {{ cal().sum(5,5) }} #调用传入的类的函数
 {% end %}
 ```
-### 4.6.2 模板中直接导入
+### 6.2 模板中直接导入
 在模板中也可以直接导入 python 模块
 
-#### 4.6.2.1 内置模块导入模块
+#### 6.2.1 内置模块导入模块
 subtemplate.html 代码
 ```
 {% extends ./base.html %} #继承父模板
@@ -458,7 +458,7 @@ subtemplate.html 代码
 {% end %}
 ```
 
-#### 4.6.2.2 自定义模块导入
+#### 6.2.2 自定义模块导入
 注意：python解释器查找 mod_file 时是根据 py 文件的路径来查找的，不是根据模板的路径来查找
 
 subtemplate.html代码
@@ -480,7 +480,7 @@ def sum(a,b):
     return a + b
 ```
 
-### 4.6.3 函数和类导入总结
+### 6.3 函数和类导入总结
 1. 渲染时导入 必须掌握:在模板渲染时导入函数和类
 2. 模板中导入 必须掌握:在模板中导入内置模块和自定义的模块
 ```
@@ -501,10 +501,10 @@ def sum(a,b):
         {{ sum(10,10)}}     # 自定义模块使用方法
 ```
 
-## 4.7 un_methods和ui_modules
+## 7 un_methods和ui_modules
 刚才讲到了传入函数和类的两种办法，如果一个函数或类需要在很多模板中被导入那之前的两种方式会不会很繁琐呢？
 
-### 4.7.1 ui_methods and ui_ui_modules
+### 7.1 ui_methods and ui_ui_modules
 `ui_methods.py`这里的文件名是随意的只要在import时合法即可，这里可以新建一个文件夹，如util，来放置 ui_methods.py 和 ui_modules.py
 ```
 # ui_methods.py定义的是函数
@@ -521,7 +521,7 @@ class TestMudole(UIModule):
         return 'ui_modules'
 ```
 
-### 4.7.2 项目中导入和配置Application参数
+### 7.2 项目中导入和配置Application参数
 test.py代码
 ```
 from util import ui_methods,ui_modules 
@@ -536,7 +536,7 @@ app = tornado.web.Application(
 )
 ```
 
-### 4.7.3 模板中函数或类调用
+### 7.3 模板中函数或类调用
 ```
 {% module TestModule() %}  # ui_modules 调用
 {{ fun1() }}   # ui_methods调用
@@ -555,12 +555,12 @@ subtemplate.html代码
 
 ```
 
-### 4.7.4 ui_methods和ui_modules总结
+### 7.4 ui_methods和ui_modules总结
 1. 必须掌握:`ui_methods` 的写法和使用
 2. 必须掌握:`ui_modules` 的写法和作用
 
-### 4.7.5 ui_methods和ui_modules案例
-#### 4.7.5.1 添加 ui_module
+### 7.5 ui_methods和ui_modules案例
+#### 7.5.1 添加 ui_module
 在 ui_modules.py 中添加如下代码
 ```
 class Advertisement(UIModule):
@@ -604,8 +604,8 @@ subtemplate.html代码
 {% end %}
 ```
 
-## 4.8 模板其他
-### 4.8.1 apply
+## 8 模板其他
+### 8.1 apply
 使用`apply`语句，使用函数的作用范围到最近的{%end%}为止
 
 subtemplate.html代码
@@ -631,7 +631,7 @@ def upper(a):
     return a.upper()
 ```
 
-### 4.8.2 linkify
+### 8.2 linkify
 linkify生成一个链接,但是要注意模板转义
 
 subtemplate.html代码
@@ -646,7 +646,7 @@ subtemplate.html代码
 {% end %}
 ```
 
-### 4.8.3 模板其他命令总结
+### 8.3 模板其他命令总结
 1. 了解:`apply` 的用法和作用
 2. 了解:`linkify` 的用法和作用 
 
