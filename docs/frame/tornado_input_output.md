@@ -24,7 +24,7 @@ Tornado可以通过write把字符串输出到浏览器，除此之外，write还
 >**5 rendirect：**
 >路由跳转
 
-**接受对象**
+**wirte接受对象**
 
 write可以接受`bytes` 、`unicode`字符串和`dict`这三个对象
 
