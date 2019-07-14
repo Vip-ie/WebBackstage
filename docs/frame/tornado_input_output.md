@@ -91,7 +91,7 @@ Tornado执行write('***')--> 缓存区--> 浏览器
 
 ### 2.2 render
 
-Tornado 能不能向浏览器输出一个已经写好的 html 文件呢？
+1. Tornado 能不能向浏览器输出一个已经写好的 html 文件呢？
 
 通过`render`可以返回一个html文件
 ```
