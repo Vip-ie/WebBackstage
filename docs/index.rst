@@ -117,7 +117,7 @@ Python框架比较不错的有Tornado、Django。
    :maxdepth: 2
    :hidden:
    :caption: Django框架
-   
+
    frame/Django
 
 
@@ -130,8 +130,24 @@ Python框架比较不错的有Tornado、Django。
 * **Mysql数据库**:
   :doc:`mysql`
 
+.. toctree::
+   :maxdepth: 2
+   :hidden:
+   :caption: Mysql数据库
+
+   database/mysql
+
+
 * **Redis**:
   :doc:`redis`
+
+.. toctree::
+   :maxdepth: 2
+   :hidden:
+   :caption: Redis数据库
+
+   database/redis
+
 
 * **Monogo**:
   :doc:`monogo`
@@ -139,10 +155,8 @@ Python框架比较不错的有Tornado、Django。
 .. toctree::
    :maxdepth: 2
    :hidden:
-   :caption: 数据库
+   :caption: monogo数据库
 
-   database/mysql
-   database/redis
    database/monogo
 
 
