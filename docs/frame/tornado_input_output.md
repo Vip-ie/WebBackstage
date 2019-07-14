@@ -187,11 +187,11 @@ class writeHandler(RequestHandler):
 ### 2.1 输入总结
 1. `get_argument:`只返回最后一个值
 2. `get_arguments:`返回一个列表
->1. get_query_argument/ get_query_arguments
+>2.1. get_query_argument/ get_query_arguments
 能获取到get请求里面的（url传参）的参数
 
->2.get_body_argument/ get_body_arguments
->>能获取到post请求form表单里面的参数
+>2.2. get_body_argument/ get_body_arguments
+能获取到post请求form表单里面的参数
 
 
 
