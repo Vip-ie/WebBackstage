@@ -1,11 +1,11 @@
 # 第一章 Tornado
 
 
-## 1.0 Tornado的安装
+## 1 Tornado的安装
 * 启动虚拟环境命令`workon projectname`
 * 安装Tornado命令`pip install tornado`
 
-## 1.2 路由
+## 2 路由
 客户端访问服务器可以看成是：客户端读取服务器资源的一个过程，路由表就指定了具体访问什么资源
 ```
 # 路由在程序中表现形式
@@ -50,11 +50,11 @@ if __name__ == "__main__":
     IOLoop.current # IOLoop是tornado.ioloop的类，current是IOLoop类的实例
     tornado.ioloop.IOLoop.current # 实例化的对象.start()
 ```
-### 路由总结
+### 2.1 路由总结
 * 必须掌握:路由的作用和定义
 * 必须掌握:Handler的作用和定义
 
-## 1.3 启动Tornado
+## 3 启动Tornado
 刚才我们运行了 Tornado，在页面也看到了效果，那在实际应用中也是这么做的吗？
 * 导入
 ```
@@ -81,7 +81,7 @@ if __name__ == "__main__":
     http_server.listen(options.port)
     tornado.ioloop.IOLoop.current().start() 
 ```
-### 命令行交互
+### 3.1 命令行交互
 使用命令行来控制启动
 * Tornado支持通过命令行参数来控制
 * Tornado的启动形式
@@ -99,52 +99,6 @@ python test.py --port=8000
 python test.py --version=1.0
 python test.py --help
 ```
-### Tornado启动总结
+### 3.2 Tornado启动总结
 * 必须掌握:Tornado的完整启动方式
 * 必须掌握:Tornado 命令行参数的传入方法和方式
-
-## 1.4 输入和输出
-刚才我们已经知道了如何去启动Tornado，也知道了如何通过命令行的交互来获取参数，那Tornado如何和浏览器做交互呢？
-
-### 输出
-从Tornado输出到浏览器我们可以使用 `write`
-
-```
-class MainHandler(tornado.web.RequestHandler):
-    def get(self):
-        self.write('hello')
-```
-
-### 输入
-
-```
-class TestIndexHandler(tornado.web.RequestHandler):
-    def get(self):
-        name = self.get_argument('name','no')
-        self.write('hello' + name)
-        print(name)
-
-        name = self.get_arguments('name')
-        self.write('<br>')
-        self.write(','.join(name))
-        print(name)
-
-```
-
-
-使用:`http://127.0.0.1:8080/test?name=budong`
-
-? 后面便是参数
-
-可以通过:get_argument和get_arguments来获取参数值
-
-### 输入输出总结
-* 输出
-
-必须掌握:write方法
-
-* 输入
-
-必须掌握:get_argument和get_arguments
-
-必须掌握:URL传入参数的方法
