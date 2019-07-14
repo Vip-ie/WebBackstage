@@ -9,7 +9,7 @@ class MainHandler(tornado.web.RequestHandler):
         self.write('hello')
 ```
 **输出总结**
->**1 write**三种类型：
+>**1. write**三种类型：
 >>1.字符串
 
 >>2.bytes
@@ -18,16 +18,16 @@ class MainHandler(tornado.web.RequestHandler):
 
 >>4.json字符串
 
->**2 flush:**
+>**2. flush:**
 >>从缓存区刷到浏览器
 
->**3 finis：**
+>**3. finis：**
 >>结束写入，后面代码依然执行，但是不会写入到浏览器
 
->**4 render:**
+>**4. render:**
 >返回一个HTML页面
 
->**5 rendirect：**
+>**5. rendirect：**
 >路由跳转
 
 **`wirte`接受对象**
