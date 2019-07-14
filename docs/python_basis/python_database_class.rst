@@ -2,9 +2,7 @@
 =============
 
 .. note::
-    数据类型详细介绍`PEP 440`_. This spec allows "normal" version numbers like ``1.4.2`` as
-    well as pre-releases. An alpha version or a release candidate are examples
-    of pre-releases and they look like this: ``2.0a1``.
+    数据类型详细介绍``单行代码显示效果`` 
 
 1.1 数字
 -------
