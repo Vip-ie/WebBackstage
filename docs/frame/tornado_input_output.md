@@ -275,9 +275,7 @@ app = tornado.web.Application(
     ],
 )
 ```
-RUL
-
-`http://127.0.0.1:8000/get?name=budong`
+RUL:`http://127.0.0.1:8000/get?name=budong`
 
 REST风格
 ```
@@ -298,11 +296,9 @@ app = tornado.web.Application(
     ],
 )
 ```
-URL
+URL:`http://127.0.0.1:8000/user/budong/18`
 
-`http://127.0.0.1:8000/user/budong/18`
-
-`http://127.0.0.1:8000/stu/20170001/budong`
+URL:`http://127.0.0.1:8000/stu/20170001/budong`
 
 ### 2.5 URL传参总结
 1. 查询字符串: 查询字符串通过在路由后面添加  ? 在加上参数名和参数值来传入参数
