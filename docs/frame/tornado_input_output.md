@@ -5,8 +5,11 @@ Tornado可以通过write把字符串输出到浏览器，除此之外，write还
 write
 >三种类型：
 >>1.字符串
+
 >>2.bytes
+
 >>3.字典
+
 >>4.json字符串
 
 >flush:
@@ -18,9 +21,8 @@ write
 render:
 >返回一个HTML页面
 
->路由跳转
 rendirect：
-
+>路由跳转
 
 刚才我们已经知道了如何去启动Tornado，也知道了如何通过命令行的交互来获取参数，那Tornado如何和浏览器做交互呢？
 
