@@ -176,7 +176,7 @@ class TestIndexHandler(tornado.web.RequestHandler):
 2. 获取?后面name参数值
 3. 可以通过:get_argument和get_arguments来获取参数值
 
-例:获取URL`http://127.0.0.1:8080/write?name=leva`
+例:获取URL`http://127.0.0.1:8080/write?name=leva`参数name的值
 ```
 class writeHandler(RequestHandler):
     def get(self):
