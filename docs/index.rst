@@ -95,13 +95,10 @@ Python框架比较不错的有Tornado、Django。
 * **Python框架**:
   :doc:`Tornado`
 
-* **Python框架**:
-  :doc:`Django`
-
 .. toctree::
    :maxdepth: 2
    :hidden:
-   :caption: Python框架
+   :caption: Tornado框架
 
    frame/Tornado
    frame/tornado_input_output
@@ -113,6 +110,13 @@ Python框架比较不错的有Tornado、Django。
    frame/deploy
 
 
+* **Python框架**:
+  :doc:`Django`
+
+.. toctree::
+   :maxdepth: 2
+   :hidden:
+   :caption: Django框架
    frame/Django
 
 
