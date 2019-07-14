@@ -162,7 +162,7 @@ class MainHandler(tornado.web.RequestHandler):
 
 -------------------------------------------------------------------------------
 
-## 2 输入
+## 2 输入`get_argument` and `get_arguments`
 
 输入`get_argument`可以获取 URL 中的参数，除此之外，还能获取到其他地方的数据吗?
 ```
@@ -190,7 +190,7 @@ class writeHandler(RequestHandler):
         self.write('使用get_argument获取URL参数name的值:' + name)
 ```
 
-### 2.1 输入总结
+### 2.1 输入`get_argument` and `get_arguments`总结
 1. `get_argument:`只返回最后一个值
 2. `get_arguments:`返回一个列表
 >2.1. get_query_argument/ get_query_arguments
@@ -201,7 +201,7 @@ class writeHandler(RequestHandler):
 
 
 
-### 2.2 get_argument与get_arguments区别
+### 2.2 get_argument and get_arguments区别
 1. get_argument一次只能获取一个元素，如果有多个元素获取最后一个元素。
 2. get_arguments 获取一个列表元素，可以获取多个元素。
 ```
