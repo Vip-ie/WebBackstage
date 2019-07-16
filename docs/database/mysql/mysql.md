@@ -100,7 +100,7 @@ mysql> show databases;
 ```
 
 #### 2.1.5 Mysql数据库使用
-##### 2.1.5.1 查看数据库
+* 查看数据库
 select database();
 ```
 mysql> select database();
@@ -112,7 +112,7 @@ mysql> select database();
 1 row in set (0.00 sec)
 ```
 
-##### 2.1.5.2 进入数据库
+* 进入数据库
 use dbname; 注意：数据库创建成功，并没有直接使用
 ```
 mysql> use college
