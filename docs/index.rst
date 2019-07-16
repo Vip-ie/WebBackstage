@@ -119,7 +119,11 @@ Python框架比较不错的有Tornado、Django。
    :hidden:
    :caption: Django框架
 
-   frame/Django
+   frame/django/2.001Django-CreateProject
+   frame/django/2.002Django-CreateViews
+   frame/django/2.003Django-Url
+   frame/django/2.004Django-Templates
+   frame/django/2.005Django-Orm
 
 
    
