@@ -1091,7 +1091,8 @@ mysql> desc department;
 2 rows in set (0.00 sec)
 ```
 
-#### 3.2.2 创建学生表（学生表中，只能添加已有的学院ID）
+#### 3.2.2 创建学生表
+（学生表中，只能添加已有的学院ID）
 ```
 mysql> create table student(
     -> id int primary key auto_increment,  ##学生ID
