@@ -1991,15 +1991,15 @@ mysql> select s_name,tz_name,age,sex,adders from student
 ### 5.11
 ### 5.12
 ### 5.13 查看隔离界别
-•   事务隔离级别的作用范围分为两种： 
-–   全局级：对所有的会话有效 
-–   会话级：只对当前的会话有效 
-•   例如，设置会话级隔离级别为READ COMMITTED ：
-mysql> SET TRANSACTION ISOLATION LEVEL READ COMMITTED；
+* 事务隔离级别的作用范围分为两种： 
+>>全局级：对所有的会话有效 
+>>会话级：只对当前的会话有效 
+* 例如，设置会话级隔离级别为READ COMMITTED
+`mysql> SET TRANSACTION ISOLATION LEVEL READ COMMITTED；`
 或：
-mysql> SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED；
-•   设置全局级隔离级别为READ COMMITTED ： 
-mysql> SET GLOBAL TRANSACTION ISOLATION LEVEL READ COMMITTED；
+`mysql> SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED；`
+* 设置全局级隔离级别为READ COMMITTED ： 
+`mysql> SET GLOBAL TRANSACTION ISOLATION LEVEL READ COMMITTED；`
 
 
 ## 6. python 操作mysql
