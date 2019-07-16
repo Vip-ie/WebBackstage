@@ -128,6 +128,67 @@ mysql> select database();
 ```
 ### 1.3 创建和删除数据库表
 
+#### 1.3.1 MySQL创建表
+创建表 语法
+
+create table [if not exists] table_name(
+
+column_name data_type,
+
+);
+
+```
+mysql> create table if not exists student(
+    -> id int,
+    -> name varchar(10)
+    -> );
+Query OK, 0 rows affected (0.06 sec)
+```
+
+#### 1.3.2 查看数据库结构 语法
+* describe tb_name;
+```
+mysql> desc student;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int(11)     | YES  |     | NULL    |       |
+| name  | varchar(10) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+```
+
+* show create table tb_name;(\G)查看表结构使用了那些命令
+```
+mysql> show create table student\G
+*************************** 1. row ***************************
+       Table: student
+Create Table: CREATE TABLE `student` (
+  `id` int(11) DEFAULT NULL,
+  `name` varchar(10) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+1 row in set (0.00 sec)
+```
+
+#### 1.3.3 查看数据库里有那些表 语法
+show tables;
+```
+mysql> show tables;
++----------------+
+| Tables_in_test |
++----------------+
+| student        |
++----------------+
+1 row in set (0.00 sec)
+```
+
+#### 1.3.4 删除表 语法
+drop table tablename;
+```
+mysql> drop table student;
+Query OK, 0 rows affected (0.03 sec)
+```
+
 ### 1.4 数据库表增、删、改、查
 ### 1.5 Mysql数据类型
 ### 1.6 练习题
