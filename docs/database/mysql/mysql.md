@@ -571,13 +571,240 @@ mysql> desc tb1;
 
 ### 2.2 唯一约束
 
+#### 2.2.1 `unique key` 确保字段中值唯一
+```
+mysql> create table tb2(
+    -> id int unique key,
+    -> name varchar(20)
+    -> );
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> desc tb2;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int(11)     | YES  | UNI | NULL    |       |
+| name  | varchar(20) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+```
+
+#### 2.2.2 添加唯一约束
+```
+mysql> alter table tb2
+    -> add unique key(name);
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc tb2;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int(11)     | YES  |     | NULL    |       |
+| name  | varchar(20) | YES  | UNI | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+```
+
+#### 2.2.3 删除唯一约束
+```
+mysql> alter table tb2
+    -> drop key id;
+Query OK, 0 rows affected (0.08 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc tb2;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int(11)     | YES  |     | NULL    |       |
+| name  | varchar(20) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+```
+
 ### 2.3 主键约束
 
+**primary key**
+1. 主键作用:可以唯一表示一条数据，每张表里面只有一个主键。
+2. 主键特性:非空且唯一，当表里没有主键的时，第一个出现的非空且为唯一的列，被当成主键。
+**注意:** 唯一标识一条数据
+
+#### 2.3.1 创建唯一主键
+```
+mysql> create table tb3(
+    -> id int primary key,
+    -> name varchar(20) not null
+    -> );
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> desc tb3;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int(11)     | NO   | PRI | NULL    |       |
+| name  | varchar(20) | NO   |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+```
+ 
+#### 2.3.2 删除主键约束
+```
+mysql> alter table tb3
+    -> drop primary key;
+Query OK, 0 rows affected (0.10 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc tb3;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int(11)     | NO   |     | NULL    |       |
+| name  | varchar(20) | NO   |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+```
+
+#### 2.3.3 添加主键约束
+```
+mysql> alter table tb3
+    -> add primary key(id);
+Query OK, 0 rows affected (0.11 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc tb3;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int(11)     | NO   | PRI | NULL    |       |
+| name  | varchar(20) | NO   |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+```
+
 ### 2.4 自增长
+auto_increment:自动编号，一般与主键组合使用。一个表里只有一个自增默认情况下，起始值为1，每次的增量为1.
+
+#### 2.4.1 创建包含有 自增长表
+```
+mysql> create table tb5(
+    -> id int primary key auto_increment,
+    -> name varchar(20)
+    -> );
+Query OK, 0 rows affected (0.11 sec)
+
+mysql> desc tb5;
++-------+-------------+------+-----+---------+----------------+
+| Field | Type        | Null | Key | Default | Extra          |
++-------+-------------+------+-----+---------+----------------+
+| id    | int(11)     | NO   | PRI | NULL    | auto_increment |
+| name  | varchar(20) | YES  |     | NULL    |                |
++-------+-------------+------+-----+---------+----------------+
+2 rows in set (0.00 sec)
+```
+
+#### 2.4.2 删除自增长表
+```
+mysql> alter table tb5
+    -> modify id int;
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc tb5;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int(11)     | NO   | PRI | NULL    |       |
+| name  | varchar(20) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+```
+
+#### 2.4.3 增加自动增长auto_increment
+```
+mysql> alter table tb5
+    -> modify id int auto_increment;
+Query OK, 0 rows affected (0.07 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc tb5;
++-------+-------------+------+-----+---------+----------------+
+| Field | Type        | Null | Key | Default | Extra          |
++-------+-------------+------+-----+---------+----------------+
+| id    | int(11)     | NO   | PRI | NULL    | auto_increment |
+| name  | varchar(20) | YES  |     | NULL    |                |
++-------+-------------+------+-----+---------+----------------+
+2 rows in set (0.00 sec)
+```
 
 ### 2.5 默认约束
+default： 初始值设置，插入记录时，如果没有明确为字段复制，则自动赋值默认值。
+
+#### 2.5.1 创建默认约束表
+```
+mysql> create table tb6(
+    ->    id int primary key auto_increment,
+    ->    name varchar(20) not null,
+    ->    age int not null default 18
+    -> );
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> desc tb6;
++-------+-------------+------+-----+---------+----------------+
+| Field | Type        | Null | Key | Default | Extra          |
++-------+-------------+------+-----+---------+----------------+
+| id    | int(11)     | NO   | PRI | NULL    | auto_increment |
+| name  | varchar(20) | NO   |     | NULL    |                |
+| age   | int(11)     | NO   |     | 18      |                |
++-------+-------------+------+-----+---------+----------------+
+3 rows in set (0.00 sec)
+```
+
+#### 2.5.2 删除default
+```
+mysql> alter table tb6
+    -> modify age int;
+Query OK, 0 rows affected (0.10 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc tb6;
++-------+-------------+------+-----+---------+----------------+
+| Field | Type        | Null | Key | Default | Extra          |
++-------+-------------+------+-----+---------+----------------+
+| id    | int(11)     | NO   | PRI | NULL    | auto_increment |
+| name  | varchar(20) | NO   |     | NULL    |                |
+| age   | int(11)     | YES  |     | NULL    |                |
++-------+-------------+------+-----+---------+----------------+
+3 rows in set (0.00 sec)
+```
+
+#### 2.5.3 添加默认值default
+```
+mysql> alter table tb6
+    -> modify age int default 20;
+Query OK, 0 rows affected (0.10 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc tb6;
++-------+-------------+------+-----+---------+----------------+
+| Field | Type        | Null | Key | Default | Extra          |
++-------+-------------+------+-----+---------+----------------+
+| id    | int(11)     | NO   | PRI | NULL    | auto_increment |
+| name  | varchar(20) | NO   |     | NULL    |                |
+| age   | int(11)     | YES  |     | 20      |                |
++-------+-------------+------+-----+---------+----------------+
+3 rows in set (0.00 sec)
+```
 
 ### 2.6 外键约束
+* 外键约束：保持数据一致性，完整性实现一对多关系。
+* 外键必须关联到键上面去，一般情况，关联到另一张表的主键。
+因为一个表只存一类信息。用外键来做参照，保证数据的一致性，可以减少数据冗余）
+
+#### 2.6.1
+
+#### 2.6.1
+#### 2.6.1
 
 ## 3. 表关关系
 
