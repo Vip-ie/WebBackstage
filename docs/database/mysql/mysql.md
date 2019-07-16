@@ -195,13 +195,326 @@ Query OK, 0 rows affected (0.03 sec)
 ### 1.4 数据库表增、删、改、查
 
 #### 1.4.1 数据库表 插入数据
-#### 1.4.2 数据库表 删除数据
+
+* insert 语法一
+插入单条数据
+```
+mysql> insert into test (id,name) value(1,'Rave');
+Query OK, 1 row affected (0.03 sec)
+```
+插入多条数据
+```
+mysql> insert into test(id,name) value(2,'leva'),(3,'zlk');
+Query OK, 2 rows affected (0.02 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+```
+
+* insert 语法二
+insert [into] tablename set col_name = {expr|default}
+```
+mysql> insert into test set id = 4,name = 'akai';
+Query OK, 1 row affected (0.04 sec)
+```
+
+#### 1.4.2 数据库表 查询数据
+
+select 查询 语法
+查询表内所有数据 * 表示所有内容`select * from table_name [where];`
+```
+mysql> select * from test;
++------+------+
+| id   | name |
++------+------+
+|    1 | Rave |
+|    2 | leva |
+|    3 | zlk  |
+|    4 | akai |
++------+------+
+4 rows in set (0.00 sec)
+```
+只查询表内指定字段内容
+```
+mysql> select name from test where id >2;
++------+
+| name |
++------+
+| zlk  |
+| akai |
++------+
+2 rows in set (0.00 sec)
+```
+
 #### 1.4.3 数据库表 更改数据
-#### 1.4.4 数据库表 查询数据
+
+select 查询语法`update tablename set col_name1={expr1|default} [where]`
+```
+mysql> update test set name = '不动' where id = 3;
+Query OK, 1 row affected (0.06 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+```
+
+#### 1.4.4 数据库表 删除数据
+
+delete 删除语法`delete from table_name where where_conditon;`
+
+**注意:** 一定要写where条件，不然会删除全部数据。
+```
+mysql> delete from test where id = 1;
+Query OK, 1 row affected (0.04 sec)
+```
+
+#### 1.4.5 表结构增、删、改、查
+* **表结构 增 add**
+在表结构内第一行增加一个字段
+```
+mysql> create table tb1(
+    -> id int,
+    -> name char(4)
+    -> );
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> alter table tb1
+    -> add age int first;    ##插入列内第一行数据
+Query OK, 0 rows affected (0.07 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+```
+
+在表结构内插入到指定位置指定字段
+```
+mysql> alter table tb1
+    -> add age int after id;     ##after表示插入到指定字段后面
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc tb1;
++-------+---------+------+-----+---------+-------+
+| Field | Type    | Null | Key | Default | Extra |
++-------+---------+------+-----+---------+-------+
+| id    | int(11) | YES  |     | NULL    |       |
+| age   | int(11) | YES  |     | NULL    |       |
+| name  | char(4) | YES  |     | NULL    |       |
++-------+---------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+```
+
+* **表结构 删 drop**
+```
++-------+---------+------+-----+---------+-------+
+| Field | Type    | Null | Key | Default | Extra |
++-------+---------+------+-----+---------+-------+
+| id    | int(11) | YES  |     | NULL    |       |
+| age   | int(11) | YES  |     | NULL    |       |
+| name  | char(4) | YES  |     | NULL    |       |
++-------+---------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> alter table tb1
+    -> drop age;
+Query OK, 0 rows affected (0.07 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc tb1;
++-------+---------+------+-----+---------+-------+
+| Field | Type    | Null | Key | Default | Extra |
++-------+---------+------+-----+---------+-------+
+| id    | int(11) | YES  |     | NULL    |       |
+| name  | char(4) | YES  |     | NULL    |       |
++-------+---------+------+-----+---------+-------+
+2 rows in set (0.01 sec)
+```
+
+* **表结构 改** （数据类型方法 modify 字段名称方法 change 改表名rename）
+修改表结构内数据类型方法
+```
+mysql> alter table tb1
+    -> modify name varchar(10);  ## 改表结构数据类型
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc tb1;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int(11)     | YES  |     | NULL    |       |
+| name  | varchar(10) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+```
+
+改表结构字段名称
+```
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int(11)     | YES  |     | NULL    |       |
+| name  | varchar(10) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> alter table tb1
+    -> change name sex char(4);  ##修改字段名称以及属性类型
+Query OK, 0 rows affected (0.06 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc tb1;
++-------+---------+------+-----+---------+-------+
+| Field | Type    | Null | Key | Default | Extra |
++-------+---------+------+-----+---------+-------+
+| id    | int(11) | YES  |     | NULL    |       |
+| sex   | char(4) | YES  |     | NULL    |       |
++-------+---------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+```
+
+改表名方法
+```
++----------------+
+| Tables_in_mydb |
++----------------+
+| tb2            |
++----------------+
+6 rows in set (0.00 sec)
+
+mysql> alter table tb2
+    -> rename tb1;    ## 表改名
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> show tables;
++----------------+
+| Tables_in_mydb |
++----------------+
+| tb1            |
++----------------+
+6 rows in set (0.00 sec)
+```
+
+* **表结构 查**
+
+show create table tablename
+```
+mysql> desc tb1; ##看看表结构方法
++-------+---------+------+-----+---------+-------+
+| Field | Type    | Null | Key | Default | Extra |
++-------+---------+------+-----+---------+-------+
+| id    | int(11) | YES  |     | NULL    |       |
+| sex   | char(4) | YES  |     | NULL    |       |
++-------+---------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> show create table tb1\G  ##查看表使用了那些命令
+*************************** 1. row ***************************
+       Table: tb1
+Create Table: CREATE TABLE `tb1` (
+  `id` int(11) DEFAULT NULL,
+  `sex` char(4) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+1 row in set (0.00 sec)
+```
 
 ### 1.5 Mysql数据类型
+常用的4种：整型、浮点型、日期类型、字符
+```
+mysql> create table st(
+    -> id int,                    ## 整型
+    -> name varchar(20),          ## 指定长度，最多65535个字符
+    -> sex char(4),               ## 指定长度，最多255个字符，定长
+    -> price double(4,2),         ## 双精度浮点型，m总个数，d小数为
+    -> detail text,               ## 可变长度，最多65535个字符
+    -> dates datetime,            ## 日期时间类型 YYYY-MM-DD HH:MM:SS
+    -> ping enum('好评','差评')    ## 枚举，在给出的value中选择
+    -> );
+```
+
+```
+insert into table vale(1,‘裤子’，‘男’，20.0，‘这条裤子超好！！！’，now(),'好评');
+```
 
 ### 1.6 练习题
+
+#### 1.6.1 建一张学生表包含（id、姓名、年龄、性别）
+```
+mysql> create table student(
+    -> id int,
+    -> name varchar(10),
+    -> age int,
+    -> sex varchar(10)
+    -> );
+Query OK, 0 rows affected (0.09 sec)
+```
+
+#### 1.6.2 查看表结构
+```
+mysql> desc student;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int(11)     | YES  |     | NULL    |       |
+| name  | varchar(10) | YES  |     | NULL    |       |
+| age   | int(11)     | YES  |     | NULL    |       |
+| sex   | varchar(10) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+```
+
+#### 1.6.3 增加四条数据
+```
+mysql> insert into student values(1,'zlk',25,'男'),(2,'rave',23,'女'),(3,'leva',29,'女'),(4,'one',25,'女');
+Query OK, 4 rows affected (0.03 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+```
+
+#### 1.6.4 查询所有数据
+```
+mysql> select * from student;
++------+------+------+------+
+| id   | name | age  | sex  |
++------+------+------+------+
+|    1 | zlk  |   25 | 男   |
+|    2 | rave |   23 | 女   |
+|    3 | leva |   29 | 女   |
+|    4 | one  |   25 | 女   |
++------+------+------+------+
+4 rows in set (0.00 sec)
+```
+
+#### 1.6.5 删除id=3的数据
+```
+mysql> delete from student where id = 3;
+Query OK, 1 row affected (0.09 sec)mysql> 
+
+mysql>select * from student;
++------+------+------+------+
+| id   | name | age  | sex  |
++------+------+------+------+
+|    1 | zlk  |   25 | 男   |
+|    2 | rave |   23 | 女   |
+|    4 | one  |   25 | 女   |
++------+------+------+------+
+3 rows in set (0.00 sec)
+```
+
+#### 1.6.6 将性别女的，修改为男
+```
+mysql> update student set sex = '男' where id = 2;
+Query OK, 1 row affected (0.10 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update student set sex = '男' where id = 4;
+Query OK, 0 rows affected (0.00 sec)
+Rows matched: 0  Changed: 0  Warnings: 0
+
+mysql> select * from student;
++------+------+------+------+
+| id   | name | age  | sex  |
++------+------+------+------+
+|    1 | zlk  |   25 | 男   |
+|    2 | rave |   23 | 男   |
+|    4 | one  |   25 | 男   |
++------+------+------+------+
+3 rows in set (0.01 sec)
+```
+
+#### 1.6.7 简单说明用户，数据库，表与数据的关系
 
 ## 2. 表约束
 
