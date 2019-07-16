@@ -157,7 +157,7 @@ Python框架比较不错的有Tornado、Django。
    :hidden:
    :caption: Mysql数据库
 
-   database/mysql
+   database/mysql/mysql
 
 
 * **Redis**:
@@ -168,7 +168,7 @@ Python框架比较不错的有Tornado、Django。
    :hidden:
    :caption: Redis数据库
 
-   database/redis
+   database/redis/redis
 
 
 * **Monogo**:
@@ -179,7 +179,7 @@ Python框架比较不错的有Tornado、Django。
    :hidden:
    :caption: monogo数据库
 
-   database/monogo
+   database/monogo/monogo
 
 
 
