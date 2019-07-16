@@ -118,14 +118,15 @@ Python框架比较不错的有Tornado、Django。
    :hidden:
    :caption: Tornado框架
 
-   frame/Tornado
-   frame/tornado_input_output
-   frame/tornado_templates
-   frame/SQLAlchemy
-   frame/Cookie_Session
-   frame/Websocket
-   frame/Asynchronous
-   frame/deploy
+   frame/tornado/Tornado
+   frame/tornado/tornado_input_output
+   frame/tornado/tornado_templates
+   frame/tornado/SQLAlchemy
+   frame/tornado/Cookie_Session
+   frame/tornado/Websocket
+   frame/tornado/Asynchronous
+   frame/tornado/deploy
+   frame/tornado/project
 
 
 * **Python框架**:
