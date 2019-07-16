@@ -1674,10 +1674,427 @@ mysql> select ts_id,  count(ts_id) from student group by ts_id having count(ts_i
 
 ### 4.2 子表查询
 
+#### 4.2.1 求出学生的平均年龄
+```
+mysql> select avg(age) from sst;
++----------+
+| avg(age) |
++----------+
+|  20.0000 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> select * from sst;
++----+------+-----+
+| id | name | age |
++----+------+-----+
+|  1 | zlk  |  18 |
+|  2 | rave |  20 |
+|  3 | leva |  22 |
++----+------+-----+
+3 rows in set (0.00 sec)
+```
+
+#### 4.2.2 查找出大于平均年龄的数据
+```
+mysql> select * from sst;
++----+------+-----+
+| id | name | age |
++----+------+-----+
+|  1 | zlk  |  18 |
+|  2 | rave |  20 |
+|  3 | leva |  22 |
++----+------+-----+
+3 rows in set (0.00 sec)
+
+mysql> select * from sst where age > 18.25;
++----+------+-----+
+| id | name | age |
++----+------+-----+
+|  2 | rave |  20 |
+|  3 | leva |  22 |
++----+------+-----+
+2 rows in set (0.00 sec)
+```
+
+#### 4.2.3 将平均数的sql语句作为子查询放入上一条语句中
+```
+mysql> select * from sst where age > (select avg(age) from sst);
++----+------+-----+
+| id | name | age |
++----+------+-----+
+|  3 | leva |  22 |
++----+------+-----+
+1 row in set (0.00 sec)
+
+mysql> select * from sst;
++----+------+-----+
+| id | name | age |
++----+------+-----+
+|  1 | zlk  |  18 |
+|  2 | rave |  20 |
+|  3 | leva |  22 |
++----+------+-----+
+3 rows in set (0.00 sec)
+```
+
+#### 4.2.4 需求：要查找，软件和语言 的学生人数
+in表示两条以上数据使用
+```
+mysql> select * from student where ts_id in(
+    -> select tz_id from tanzhou where tz_name='软件' or tz_name='语言');
++------+-----------+-------+
+| s_id | s_name    | ts_id |
++------+-----------+-------+
+|    4 | 班长      |     1 |
+|    5 | lucky     |     1 |
+|    7 | jiangeng  |     1 |
+|    2 | 玲玲      |     2 |
+|    9 | 张力凯    |     2 |
++------+-----------+-------+
+5 rows in set (0.00 sec)
+```
+
 ### 4.3 关联查询
 
+#### 4.3.1 内连接【inner|cross】join
+无条件内连接：（又名交叉连接/笛卡尔连接，第一张表中的每一项会和另一张表的每一项一次组合）
+```
+mysql> select * from student,tanzhou;
++------+-----------+-------+-------+---------+
+| s_id | s_name    | ts_id | tz_id | tz_name |
++------+-----------+-------+-------+---------+
+|    1 | 三花      |     3 |     1 | 软件    |
+|    1 | 三花      |     3 |     2 | 语言    |
+|    1 | 三花      |     3 |     3 | 营销    |
+|    1 | 三花      |     3 |     4 | 其他    |
+|    2 | 玲玲      |     2 |     1 | 软件    |
+|    2 | 玲玲      |     2 |     2 | 语言    |
+|    2 | 玲玲      |     2 |     3 | 营销    |
+|    2 | 玲玲      |     2 |     4 | 其他    |
++------+-----------+-------+-------+---------+
+8 rows in set (0.00 sec)
+```
+
+#### 4.3.2 有条件内连接
+（在无条件的内连接基础上，加上一个ON句子当连接的时候，筛选出那些有实际意义的记录行来进行拼接
+```
+mysql> select * from student ineer join tanzhou 
+    -> on ts_id=tz_id;
++------+-----------+-------+-------+---------+
+| s_id | s_name    | ts_id | tz_id | tz_name |
++------+-----------+-------+-------+---------+
+|    4 | 班长      |     1 |     1 | 软件    |
+|    5 | lucky     |     1 |     1 | 软件    |
+|    7 | jiangeng  |     1 |     1 | 软件    |
+|    2 | 玲玲      |     2 |     2 | 语言    |
+|    9 | 张力凯    |     2 |     2 | 语言    |
+|    1 | 三花      |     3 |     3 | 营销    |
+|    8 | 三花花    |     3 |     3 | 营销    |
+|    3 | 林林      |     4 |     4 | 其他    |
+|    6 | 王为      |     4 |     4 | 其他    |
++------+-----------+-------+-------+---------+
+
+筛选方法
+mysql> select s_name 姓名,tz_name 学院 from student inner join tanzhou on ts_id=tz_id;
++-----------+--------+
+| 姓名      | 学院   |
++-----------+--------+
+| 班长      | 软件   |
+| lucky     | 软件   |
+| jiangeng  | 软件   |
+| 玲玲      | 语言   |
+| 张力凯    | 语言   |
+| 三花      | 营销   |
+| 三花花    | 营销   |
+| 林林      | 其他   |
+| 王为      | 其他   |
++-----------+--------+
+9 rows in set (0.00 sec)
+```
+
+#### 4.3.3 外连接{left|rigth}join
+
+左外连接 left join
+
+左外连接：（以左表为基准）
+
+两张表做连接的时候，在连接条件不匹配的时候留下左表中的数据，而右表的数据以null填充
+
+例:使用左连接把学生的数据全取出，该学生没有学院信息的用null填充
+```
+mysql> select * from student left join tanzhou on ts_id=tz_id;
++------+-----------+-------+-------+---------+
+| s_id | s_name    | ts_id | tz_id | tz_name |
++------+-----------+-------+-------+---------+
+|    1 | 三花      |     3 |     3 | 营销    |
+|    2 | 玲玲      |     2 |     2 | 语言    |
+|    3 | 林林      |     4 |     4 | 其他    |
+|    4 | 班长      |     1 |     1 | 软件    |
+|    5 | lucky     |     1 |     1 | 软件    |
+|    6 | 王为      |     4 |     4 | 其他    |
+|    7 | jiangeng  |     1 |     1 | 软件    |
+|    8 | 三花花    |     3 |     3 | 营销    |
+|    9 | 张力凯    |     2 |     2 | 语言    |
++------+-----------+-------+-------+---------+
+9 rows in set (0.00 sec)
+
+mysql> select * from student right join tanzhou on ts_id=tz_id;
++------+-----------+-------+-------+---------+
+| s_id | s_name    | ts_id | tz_id | tz_name |
++------+-----------+-------+-------+---------+
+|    4 | 班长      |     1 |     1 | 软件    |
+|    5 | lucky     |     1 |     1 | 软件    |
+|    7 | jiangeng  |     1 |     1 | 软件    |
+|    2 | 玲玲      |     2 |     2 | 语言    |
+|    9 | 张力凯    |     2 |     2 | 语言    |
+|    1 | 三花      |     3 |     3 | 营销    |
+|    8 | 三花花    |     3 |     3 | 营销    |
+|    3 | 林林      |     4 |     4 | 其他    |
+|    6 | 王为      |     4 |     4 | 其他    |
+| NULL | NULL      |  NULL |     5 | 设计    |
++------+-----------+-------+-------+---------+
+10 rows in set (0.00 sec)
+```
+
+右外连接 right join
+
+右外连接:（以右表为基准）
+
+对两张表做连接的时候，在连接条件不匹配的时候留下右表中的数据，而左表中的数据以null填充。+
+
+例:使用右表外连接，把没有的学院的数据也显示出来。
+```
+mysql> select * from student right join tanzhou on ts_id=tz_id;
++------+-----------+-------+-------+---------+
+| s_id | s_name    | ts_id | tz_id | tz_name |
++------+-----------+-------+-------+---------+
+|    4 | 班长      |     1 |     1 | 软件    |
+|    5 | lucky     |     1 |     1 | 软件    |
+|    7 | jiangeng  |     1 |     1 | 软件    |
+|    2 | 玲玲      |     2 |     2 | 语言    |
+|    9 | 张力凯    |     2 |     2 | 语言    |
+|    1 | 三花      |     3 |     3 | 营销    |
+|    8 | 三花花    |     3 |     3 | 营销    |
+|    3 | 林林      |     4 |     4 | 其他    |
+|    6 | 王为      |     4 |     4 | 其他    |
+| NULL | NULL      |  NULL |     5 | 设计    |
++------+-----------+-------+-------+---------+
+10 rows in set (0.00 sec)
+```
+
+多表查询
+
+例：查学生的ID 姓名 学院名 报学科名
+```
+mysql> select * from student 
+    ->left join tanzhou on ts_id=tz_id 
+    ->left join course on tz_id=tzc_id 
+    ->left join choose on cc_id=c_id;
++------+--------+-------+-------+---------+------+---------+--------+-------+-------+
+| s_id | s_name | ts_id | tz_id | tz_name | c_id | c_name  | tzc_id | sc_id | cc_id |
++------+--------+-------+-------+---------+------+---------+--------+-------+-------+
+|    1 | zlk    |     1 |     1 | 软件    |    1 | python  |      1 |     1 |     1 |
+|    1 | zlk    |     1 |     1 | 软件    |    2 | java    |      1 |     1 |     2 |
+|    2 | lezlk  |     2 |     2 | 语言    |    3 | english |      2 |     2 |     3 |
+|    3 | rave   |     3 |     3 | 营销    |    4 | seo     |      3 |     3 |     4 |
+|    4 | rac    |     5 |     5 | 其他    |    5 | 其他    |      5 |  NULL |  NULL |
+|    5 | hzip   |     4 |     4 | 设计    | NULL | NULL    |   NULL |  NULL |  NULL |
++------+--------+-------+-------+---------+------+---------+--------+-------+-------+
+6 rows in set (0.00 sec)
+
+筛选出最终结果
+mysql> select s_name as 姓名,tz_name as 学院,c_name as 课程 from student 
+    ->left join tanzhou on ts_id=tz_id 
+    ->left join course on tz_id=tzc_id 
+    ->left join choose on cc_id=c_id;
++--------+--------+---------+
+| 姓名   | 学院   | 课程    |
++--------+--------+---------+
+| zlk    | 软件   | python  |
+| zlk    | 软件   | java    |
+| lezlk  | 语言   | english |
+| rave   | 营销   | seo     |
+| rac    | 其他   | 其他    |
+| hzip   | 设计   | NULL    |
++--------+--------+---------+
+6 rows in set (0.00 sec)
+```
+
 ### 4.4 练习题
+#### 4.4.1 查出学生详情表性别为男,并同时年龄大于18的
+```
+mysql> select * from details where sex='男' and age >18;
++----+------+------+-----------------+
+| id | age  | sex  | adders          |
++----+------+------+-----------------+
+|  3 |   20 | 男   | 测试地址三      |
+|  5 |   22 | 男   | 测试地址五      |
++----+------+------+-----------------+
+```
+#### 4.4.2 根据上述的结果,查出学生表对应的 姓名， 年龄，家庭住址
+```
+mysql> select s_name,age,sex,adders from student 
+    ->left join details on s_id = id ;
++--------+------+------+-----------------+
+| s_name | age  | sex  | adders          |
++--------+------+------+-----------------+
+| zlk    |   18 | 男   | 测试地址一      |
+| lezlk  |   19 | 女   | 测试地址二      |
+| rave   |   20 | 男   | 测试地址三      |
+| rac    |   21 | 女   | 测试地址四      |
+| hzip   |   22 | 男   | 测试地址五      |
++--------+------+------+-----------------+
+```
+#### 4.4.3 查出学生的（姓名，年龄，性别，所属学院）
+```
+mysql> select * from student 
+    ->left join tanzhou on ts_id = tz_id 
+    ->left join details on s_id=id;
++------+--------+-------+-------+---------+------+------+------+-----------------+
+| s_id | s_name | ts_id | tz_id | tz_name | id   | age  | sex  | adders          |
++------+--------+-------+-------+---------+------+------+------+-----------------+
+|    1 | zlk    |     1 |     1 | 软件    |    1 |   18 | 男   | 测试地址一      |
+|    2 | lezlk  |     2 |     2 | 语言    |    2 |   19 | 女   | 测试地址二      |
+|    3 | rave   |     3 |     3 | 营销    |    3 |   20 | 男   | 测试地址三      |
+|    4 | rac    |     5 |     5 | 其他    |    4 |   21 | 女   | 测试地址四      |
+|    5 | hzip   |     4 |     4 | 设计    |    5 |   22 | 男   | 测试地址五      |
++------+--------+-------+-------+---------+------+------+------+-----------------+
+5 rows in set (0.00 sec)
+
+mysql> select s_name,tz_name,age,sex,adders from student 
+    ->left join tanzhou on ts_id = tz_id 
+    ->left join details on s_id=id;
++--------+---------+------+------+-----------------+
+| s_name | tz_name | age  | sex  | adders          |
++--------+---------+------+------+-----------------+
+| zlk    | 软件    |   18 | 男   | 测试地址一      |
+| lezlk  | 语言    |   19 | 女   | 测试地址二      |
+| rave   | 营销    |   20 | 男   | 测试地址三      |
+| rac    | 其他    |   21 | 女   | 测试地址四      |
+| hzip   | 设计    |   22 | 男   | 测试地址五      |
++--------+---------+------+------+-----------------+
+5 rows in set (0.00 sec)
+```
 
 ## 5. 事务
+### 5.1
+### 5.2
+### 5.3
+### 5.4
+### 5.5
+### 5.6
+### 5.7
+### 5.8
+### 5.9
+### 5.10
+### 5.11
+### 5.12
+### 5.13 查看隔离界别
+•   事务隔离级别的作用范围分为两种： 
+–   全局级：对所有的会话有效 
+–   会话级：只对当前的会话有效 
+•   例如，设置会话级隔离级别为READ COMMITTED ：
+mysql> SET TRANSACTION ISOLATION LEVEL READ COMMITTED；
+或：
+mysql> SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED；
+•   设置全局级隔离级别为READ COMMITTED ： 
+mysql> SET GLOBAL TRANSACTION ISOLATION LEVEL READ COMMITTED；
+
 
 ## 6. python 操作mysql
+要操作数据库，首先就要建立和数据库的连接，配置pymysql.connect连接数据库
+```
+import pymysql              #导入pymysql模块
+
+conn = pymysql.connect(
+    host = '127.0.0.1',     #主机IP
+    port = 3306,            #端口
+    user = 'leva',          #用户名
+    password = 'leva123',   #密码
+    db = 'mydb',            #数据库名
+    charset = 'utf8'        #数据库编码
+)
+print(conn)                 #测试连接数据库是否成功
+```
+
+### 6.2 定义游标
+```
+#定义游标
+cursor = conn.cursor()
+```
+
+### 6.3 执行SQL语句
+```
+cursor.execute('show tables')
+```
+
+### 6.3 取出数据
+```
+cursor.fetchone()   #取出一条数据
+cursor.fetchall()   #取出所有数据
+
+取出数据例：
+date_tb ='''
+select * from student
+'''
+cursor.execute(date_tb)
+one = cursor.fetchone()
+print(*one)
+结果
+1 zlk 1
+```
+
+### 6.4 创建表
+```
+tb = '''
+create table tb(
+id int primary key auto_increment,
+name varchar(20)
+)
+'''
+cursor.execute(tb)
+```
+
+### 6.5 插入
+```
+row = cursor.execute("insert into tb(id,name)value(1,'zlk')")
+conn.commit()   #提交事务
+cursor.close()  #关闭游标
+conn.close()    #关闭连接
+```
+
+### 6.6 更新
+```
+row = cursor.execute("update test set name= '三花' where id = %s", (2,))
+conn.commit()   #提交事务
+cursor.close()  #关闭游标
+conn.close()    #关闭连接
+```
+
+### 6.7 删除
+```
+row = cursor.execute("delete from tb where id = 3")
+conn.commit()   #提交事务
+cursor.close()  #关闭游标
+conn.close()    #关闭连接
+```
+
+### 6.8 联合查询
+```
+union ='''
+select s_name as 姓名,tz_name as 学院,c_name as 课程 from student 
+left join tanzhou on ts_id=tz_id
+left join course on tz_id=tzc_id
+left join choose on cc_id=c_id
+'''
+cursor.execute(union)
+one = cursor.fetchone()   #取出一条数据
+all = cursor.fetchall()   #取出所有数据
+print（*all）             
+('zlk', '软件', 'java') 
+('lezlk', '语言', 'english') 
+('rave', '营销', 'seo') 
+('rac', '其他', '其他') 
+('hzip', '设计', None)
+```
