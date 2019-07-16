@@ -171,11 +171,9 @@ Create Table: CREATE TABLE `student` (
 1 row in set (0.00 sec)
 ```
 
-<<<<<<< HEAD
-#### 1.3.3 查看数据库里有那些表语法
 =======
-#### 1.3.3 查看数据库里有那些表语法
->>>>>>> 86c1dabbebcb6a9d1bdce746953e44be328f50d6
+#### 1.3.3 查看数据库有那些表语法
+
 show tables;
 ```
 mysql> show tables;
