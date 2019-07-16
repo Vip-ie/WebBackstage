@@ -126,6 +126,7 @@ mysql> select database();
 +------------+
 1 row in set (0.00 sec)
 ```
+
 ### 1.3 创建和删除数据库表
 
 #### 1.3.1 MySQL创建表
