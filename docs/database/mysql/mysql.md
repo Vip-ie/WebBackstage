@@ -2,7 +2,9 @@
 
 ## 1. Mysql基础
 
-### 1.1 登录MySQL
+### 1.1 Mysql简单操作
+
+#### 1.1.0 登录MySQL
 ```
 mysql -u + user -p + password;
 ```
@@ -124,6 +126,11 @@ mysql> select database();
 +------------+
 1 row in set (0.00 sec)
 ```
+### 1.3 创建和删除数据库表
+
+### 1.4 数据库表增、删、改、查
+### 1.5 Mysql数据类型
+### 1.6 练习题
 
 ## 2. 表约束
 
