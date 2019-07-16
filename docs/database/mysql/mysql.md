@@ -2003,6 +2003,7 @@ mysql> SET GLOBAL TRANSACTION ISOLATION LEVEL READ COMMITTED；
 
 
 ## 6. python 操作mysql
+### 6.1 pymysql 配置
 要操作数据库，首先就要建立和数据库的连接，配置pymysql.connect连接数据库
 ```
 import pymysql              #导入pymysql模块
