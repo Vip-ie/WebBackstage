@@ -182,4 +182,18 @@ Python框架比较不错的有Tornado、Django。
    database/monogo/monogo
 
 
+Sublime
+--------
+
+Sublime常用设置
+
+* **Sublime编译器**:
+  :doc:`sublime`
+
+.. toctree::
+   :maxdepth: 2
+   :hidden:
+   :caption: Sublime编译器
+
+   sublime/sublime
 
