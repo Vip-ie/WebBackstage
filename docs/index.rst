@@ -198,3 +198,19 @@ Sublime常用设置
 
    sublime/sublime
 
+System
+--------
+
+System
+
+* **System相关设置**:
+  :doc:`ubuntu`
+
+.. toctree::
+   :maxdepth: 2
+   :hidden:
+   :caption: system系统
+
+   system/ubuntu
+   system/macx
+   system/centos
