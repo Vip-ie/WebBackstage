@@ -1,3 +1,5 @@
+# CentOS Python3环境配置
+
 ## [CentOS 7.4 安装python3及虚拟环境](/h ttps://www.centos.bz/2018/05/centos-7-4-安装python3及虚拟环境/)
 
 由于写了个爬虫脚本，需要放到服务器中运行。之前一直在[Ubuntu](https://www.centos.bz/category/other-system/ubuntu/)系统中安装多[Python](https://www.centos.bz/category/python/)环境，而[CentOS](https://www.centos.bz/tag/centos/)
