@@ -25,7 +25,7 @@ while (count < 9):
 print "Good bye!"
 ```
 
-### 1 continue(跳过该次循环)
+### 1.1 continue(跳过该次循环)
 1. `continue`语句跳出本次循环，而`break`跳出整个循环。
 2. `continue`语句用来告诉Python跳过当前循环的剩余语句，然后继续进行下一轮循环。
 3. `continue`语句用在`while`和`for`循环中。
@@ -59,7 +59,7 @@ while i < 10:     # 循环条件是否成立
     print(i)      # 输出双数 2、4、6、8、10
 ```
 
-### 2 break(退出循环) 
+### 1.2 break(退出循环) 
 1. break语句用来终止循环语句，即循环条件没有False条件或者序列还没被完全递归完，也会停止执行循环语句
 2. break语句用在while和for循环中
 3. 如果您使用嵌套循环，break语句将停止执行最深层的循环，并开始执行下一行代码
@@ -93,7 +93,7 @@ while 1:        # 循环条件为1必定成立
         break
 ```
 
-### 3 无限循环
+### 1.3 无限循环
 如果条件判断语句永远为 true，循环将会无限的执行。
 ```
 var = 1
@@ -105,7 +105,7 @@ while var == 1 :                    # 条件成立执行
 print("Good bye!")
 ```
 
-### 4 循环使用else语句
+### 1.4 循环使用else语句
 `while … else`在循环条件为`false`时执行`else`语句块
 
 实例
@@ -118,7 +118,7 @@ else:
     print ('is not less than :', count) # 条件满足执行
 ```
 
-### 5 简单语句组
+### 1.5 简单语句组
 类似`if`语句的语法，如果你的`while` 循环体中只有一条语句，你可以将该语句与`while`写在同一行中
 ```
 flag = 1
@@ -126,7 +126,7 @@ while (flag): print('Given flag is really true!')  # 无限循环
 print('Good bye!')
 ```
 
-### 6 pass语句
+### 1.6 pass语句
 1. pass 是空语句，是为了保持程序结构的完整性。
 2. pass 不做任何事情，一般用做占位语句。
 实例
