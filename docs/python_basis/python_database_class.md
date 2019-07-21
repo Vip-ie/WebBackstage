@@ -9,6 +9,15 @@
 
 使用三重引号的字符串可以跨越多行 —— 其中所有的空白字符都将包含在该字符串字面值中
 
+实例
+```
+
+```
+### 1.2 字符串的方法
+
+
+
+
 ### 1.2 number（数字）
 
 #### 1.2.1 Python运算符？
@@ -113,3 +122,15 @@ NameError: name 'tup1' is not defined
 ### 2.1 list(列表)
 ### 2.2 set(集合)
 ### 2.3 dict(字典)
+
+
+## 3 序列类型
+
+### 3.1 序列类型 --- list、tuple、range
+
+#### 3.1.1 二进制序列类型 --- bytes、bytearray、 memoryview
+##### 3.1.1.1 bytes
+##### 3.1.1.2 bytearray
+##### 3.1.1.3 memoryview
+
+#### 3.1.2 
