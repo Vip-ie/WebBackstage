@@ -19,31 +19,81 @@
 
 
 ### 1.2 number（数字）
+1. Python Number 数据类型用于存储数值。
+2. 数据类型是不允许改变的,这就意味着如果改变 Number 数据类型的值，将重新分配内存空间。
+
 #### 1.2.1 number支持四种不同数值类型
 1. `int`整型 - 通常被称为是整型或整数，是正或负整数，不带小数点。
 2. `long`长整型 - 无限大小的整数，整数最后是一个大写或小写的L。
 3. `float`浮点型 - 浮点型由整数部分与小数部分组成，浮点型也可以使用科学计数法表示（2.5e2 = 2.5 x 102 = 250）
 4. `complex`复数 - 复数由实数部分和虚数部分构成，可以用a + bj,或者complex(a,b)表示， 复数的实部a和虚部b都是浮点型。
 
+* 长整型也可以使用小写"L"，但是还是建议您使用大写"L"，避免与数字"1"混淆。Python使用"L"来显示长整型。
+* Python还支持复数，复数由实数部分和虚数部分构成，可以用a + bj,或者complex(a,b)表示， 复数的实部a和虚部b都是浮点型
+
 #### 1.2.2 Number 类型转换
+```
+
+```
 
 #### 1.2.3 math模块、cmath模块
+1. Python 中数学运算常用的函数基本都在 math 模块、cmath 模块中。
+2. Python math 模块提供了许多对浮点数的数学运算函数。
+3. Python cmath 模块包含了一些用于复数运算的函数。
+4. cmath 模块的函数跟 math 模块函数基本一致，区别是 cmath 模块运算的是复数，math 模块运算的是数学运算。
+
+查看`math`包含的内容
+```
+import math
+
+print(dir(math))
+
+# 打印内容
+['__doc__', '__file__', '__loader__', '__name__', '__package__', '__spec__', 'acos', 'acosh', 'asin', 'asinh', 'atan', 'atan2', 'atanh', 'ceil', 'copysign', 'cos', 'cosh', 'degrees', 'e', 'erf', 'erfc', 'exp', 'expm1', 'fabs', 'factorial', 'floor', 'fmod', 'frexp', 'fsum', 'gamma', 'gcd', 'hypot', 'inf', 'isclose', 'isfinite', 'isinf', 'isnan', 'ldexp', 'lgamma', 'log', 'log10', 'log1p', 'log2', 'modf', 'nan', 'pi', 'pow', 'radians', 'remainder', 'sin', 'sinh', 'sqrt', 'tan', 'tanh', 'tau', 'trunc']
+```
+
+查看`cmath`包含的内容
+```
+import cmath
+
+print(dir(cmath))
+
+# 打印内容
+['__doc__', '__file__', '__loader__', '__name__', '__package__', '__spec__', 'acos', 'acosh', 'asin', 'asinh', 'atan', 'atanh', 'cos', 'cosh', 'e', 'exp', 'inf', 'infj', 'isclose', 'isfinite', 'isinf', 'isnan', 'log', 'log10', 'nan', 'nanj', 'phase', 'pi', 'polar', 'rect', 'sin', 'sinh', 'sqrt', 'tan', 'tanh', 'tau']
+```
+
+实例
+```
+import cmath
+
+cc =cmath.sqrt(-1)
+print(cc)
+
+cc1 = cmath.sqrt(9)
+print(cc1)
+
+cc2 = cmath.sin(1)
+print(cc2)
+
+cc3 = cmath.log10(100)
+print(cc3)
+```
 
 #### 1.2.4 数学函数
-1. `abs(x)`
-2. `ceil(x)`
-3. `cmp(x,y)`
-4. `exp(x)`
-5. `fabs(x)`
-6. `floor(x)`
-7. `log(x)`
-8. `log10(x)`
-9. `max(x1,x2,...)`
-10. `min(x1,x2,...)`
-11. `modf(x)`
-12. `pow(x,y)`
-13. `round(x[,n])`
-14. `sqrt(x)`
+1. `abs(x)` 返回数字的绝对值，如abs(-10) 返回 10
+2. `ceil(x)`返回数字的上入整数，如math.ceil(4.1) 返回 5
+3. `cmp(x,y)`如果 x < y 返回 -1, 如果 x == y 返回 0, 如果 x > y 返回 1
+4. `exp(x)`返回e的x次幂(ex),如math.exp(1) 返回2.718281828459045
+5. `fabs(x)`返回数字的绝对值，如math.fabs(-10) 返回10.0
+6. `floor(x)`返回数字的下舍整数，如math.floor(4.9)返回 4
+7. `log(x)`如math.log(math.e)返回1.0,math.log(100,10)返回2.0
+8. `log10(x)`返回以10为基数的x的对数，如math.log10(100)返回 2.0
+9. `max(x1,x2,...)`返回给定参数的最大值，参数可以为序列。
+10. `min(x1,x2,...)`返回给定参数的最小值，参数可以为序列。
+11. `modf(x)`返回x的整数部分与小数部分，两部分的数值符号与x相同，整数部分以浮点型表示。
+12. `pow(x,y)`x**y 运算后的值。
+13. `round(x[,n])`返回浮点数x的四舍五入值，如给出n值，则代表舍入到小数点后的位数。
+14. `sqrt(x)`返回数字x的平方根
 
 #### 1.2.5 随机数函数
 随机数可以用于数学，游戏，安全等领域中，还经常被嵌入到算法中，用以提高算法效率，并提高程序的安全性。
@@ -70,13 +120,13 @@
 1. `pi`数学常量 pi（圆周率，一般以π来表示）
 2. `e`数学常量 e，e即自然常数（自然常数）。
 
-#### 1.2.1 Python运算符？
+#### 1.2.8 Python运算符？
 * Python里面怎么做简单的加减乘除
 * 怎样方便的把计算结果保存下来，方便下次计算？
 * Python中小数是怎么计算的呢？小数和整数的混合运算计算结果是怎样的呢？
 * Python中总共有多少数值类型？
 
-#### 1.2.2 Python的运算
+#### 1.2.9 Python的运算
 * 运算符:`+、-、*、/、//、%、**`
 * python做简单的加减乘除在解释器里面直输入即可
 
