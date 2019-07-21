@@ -128,6 +128,20 @@ while (flag): print('Given flag is really true!')  # 无限循环
 print('Good bye!')
 ```
 
+### 6 pass语句
+1. pass 是空语句，是为了保持程序结构的完整性。
+2. pass 不做任何事情，一般用做占位语句。
+实例
+```
+for letter in "python":      # 循环体
+    if letter == 'h':        # 判断条件是否成立
+        pass                 # 跳过
+        print("这是pass块")   # 打印出指定内容
+    print("当前字母:",letter)  # 打印当前字母
+print("Good bye!")
+
+```
+
 ## 2 for 循环
 重复执行语句
 
