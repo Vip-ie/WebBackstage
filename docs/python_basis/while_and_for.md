@@ -28,6 +28,30 @@ print "Good bye!"
 ```
 
 ### 1 continue(跳过该次循环)
+1. `continue`语句跳出本次循环，而`break`跳出整个循环。
+2. `continue`语句用来告诉Python跳过当前循环的剩余语句，然后继续进行下一轮循环。
+3. `continue`语句用在`while`和`for`循环中。
+
+实例1
+```
+for  letter in "python":     # 循环取出一个单词的每个字母
+    if letter == "h":        # 判断条件成立
+        continue             # 判断条件成立跳过此次循环
+    print("当前字母:",letter)
+```
+
+实例2
+```
+var = 10                    # 定义一个变量
+while var > 0:              # 循环体
+    var = var -1            # 变量减一
+    if var == 5:            # 判断条件是否成立
+        continue            # 条件成立跳过此次循环
+    print("当前变量值:",var)  # 打印每个字母
+print("Good bye!")
+```
+
+实例3
 ```
 i = 1             # 定义一个变量并赋值为1
 while i < 10:     # 循环条件是否成立
