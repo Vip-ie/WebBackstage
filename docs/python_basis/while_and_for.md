@@ -210,7 +210,6 @@ while(i < 100):
         j = j + 1
     if (j > i/j): print("是素数",i)
     i = i + 1
-
 print("Good bye!")
 ```
 

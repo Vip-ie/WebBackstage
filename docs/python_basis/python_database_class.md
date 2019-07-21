@@ -34,9 +34,73 @@
 8
 ```
 
+### 1.3 tupe
+1. 元组使用小括号
+2. 元组创建很简单，只需要在小括号中添加元素，并使用逗号隔开即可。
+
+实例1: 创建一个空元组
+```
+tup2 = ()
+```
+
+实例2:元组中只包含一个元素时，需要在元素后面添加逗号
+```
+tup3 = (50,)
+```
+
+实例3:创建一个元组
+```
+tup1 =("physics","chemistry",1997,2000)
+```
+
+#### 1.3.1 访问元组
+元组可以使用下标索引来访问元组中的值
+
+实例
+```
+tup1 =("physics","chemistry",1997,2000)
+print(tup1[0])
+```
+
+#### 1.3.2 修改元组
+元组中的元素值是不允许修改的，但我们可以对元组进行连接组合
+
+实例
+```
+tup1 = (12,34,56)
+tup2 = ("abc","xyz")
+
+tup3 = tup1 + tup2    # 创建一个新的元组
+print(tup3)
+```
+
+### 1.4 删除元组
+元组中的元素值是不允许删除的，但我们可以使用`del`语句来删除整个元组
+
+实例
+```
+tup1 =("physics","chemistry",1997,2000)
+print(tup1)
+
+del tup1
+print("after deleting tup1:")
+print(tup1)
+
+# 以上实例元组被删除后，输出变量会有异常信息，输出如下所示
+('physics', 'chemistry', 1997, 2000)
+after deleting tup1:
+Traceback (most recent call last):
+  File "/Users/leva/Desktop/Project/temp/while.py", line 6, in <module>
+    print(tup1)
+NameError: name 'tup1' is not defined
+```
+
+### 1.5 元组运算符
+与字符串一样，元组之间可以使用 + 号和 * 号进行运算。这就意味着他们可以组合和复制，运算后会生成一个新的元组。
+
+
 ## 2 可变数据类型
 
 ### 2.1 list(列表)
-### 2.2 tupe(元组)
-### 2.4 set(集合)
-### 2.5 dict(字典)
+### 2.2 set(集合)
+### 2.3 dict(字典)
