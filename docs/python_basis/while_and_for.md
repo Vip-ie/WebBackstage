@@ -27,7 +27,7 @@ while (count < 9):
 print "Good bye!"
 ```
 
-### continue(跳过该次循环)
+### 1 continue(跳过该次循环)
 ```
 i = 1             # 定义一个变量并赋值为1
 while i < 10:     # 循环条件是否成立
@@ -37,7 +37,31 @@ while i < 10:     # 循环条件是否成立
     print(i)      # 输出双数 2、4、6、8、10
 ```
 
-### break(退出循环) 
+### 2 break(退出循环) 
+1. break语句用来终止循环语句，即循环条件没有False条件或者序列还没被完全递归完，也会停止执行循环语句
+2. break语句用在while和for循环中
+3. 如果您使用嵌套循环，break语句将停止执行最深层的循环，并开始执行下一行代码
+
+实例1
+```
+for letter in "python":      # 循环取出当前单词每个字母
+    if letter == "h":        # 判断条件条件是否成立
+        break                # 条件成立跳出循环，条件不成立继续执行
+    print("点前字母:",letter)  # 打印成立字母 
+```
+
+实例2
+```
+var = 10
+while var > 0:
+    print("当前变量值:",var)   # 打印变量
+    var = var -1             # 变量减一
+    if var  == 5:            # 判断变量是否相当
+        break                # 变量相等停止循环
+print("Good bye!")
+```
+
+实例3
 ```
 i  = 1
 while 1:        # 循环条件为1必定成立
@@ -47,14 +71,111 @@ while 1:        # 循环条件为1必定成立
         break
 ```
 
-### 无限循环
+### 3 无限循环
 如果条件判断语句永远为 true，循环将会无限的执行。
 ```
+var = 1
+while var == 1 :                    # 条件成立执行
+    num = 20
 
+    print("You entered :", num)
+
+print("Good bye!")
+```
+
+### 4 循环使用else语句
+`while … else`在循环条件为`false`时执行`else`语句块
+
+实例
+```
+count = 0
+while count < 5 :                       # 条件成立执行
+    print('is less than :',count)
+    count = count + 1
+else:
+    print ('is not less than :', count) # 条件满足执行
+```
+
+### 5 简单语句组
+类似`if`语句的语法，如果你的`while` 循环体中只有一条语句，你可以将该语句与`while`写在同一行中
+```
+flag = 1
+while (flag): print('Given flag is really true!')  # 无限循环
+print('Good bye!')
 ```
 
 ## 2 for 循环
 重复执行语句
 
+for循环的语法
+```
+for i in python:   # 循环体
+    print(i)       # 打印条件
+```
+
+实例
+```
+for i in "python":                     # 循环取出一个英文单词单个字母
+    print('当前字母:',i)
+```
+
+### 2.1 通过序列索引迭代
+```
+fruits = ["banana","apple","mango"]    # 定义个列表
+for i in fruits:                       # 循环取出一个列表值
+    print("当前水果:",i)
+print("Good bye!")
+```
+
+### 2.2 循环使用else语句
+`for … else`表示这样的意思，`for`中的语句和普通的没有区别，`else`中的语句会在循环正常执行完（即 for 不是通过 break 跳出而中断的）的情况下执行，while … else 也是一样。
+
+实例
+```
+for num in range(10,20):                         # 迭代10到20之间的数字
+    for i in range(2,num):                       # 根据因子迭代
+        if num%i == 0:                           # 确定第一个因子
+            j = num/i                            # 计算第二个因子
+            print("%d 等于 %d * %d" % (num,i,j))
+            break                                # 跳出当前循环
+        else:                                    # 循环的else部分
+            print("是一个质数:",num)               
+```
+
 ## 3 嵌套循环
 你可以在while循环体中嵌套for循环
+
+Python 语言允许在一个循环体里面嵌入另一个循环
+
+Python for 循环嵌套语法
+```
+for iterating_var in sequence:
+   for iterating_var in sequence:
+      statements(s)
+   statements(s)
+```
+
+Python while 循环嵌套语法
+```
+for iterating_var in sequence:
+   for iterating_var in sequence:
+      statements(s)
+   statements(s)
+```
+你可以在循环体内嵌入其他的循环体，如在while循环中可以嵌入for循环， 反之，你可以在for循环中嵌入while循环。
+
+实例
+```
+i = 2
+while(i < 100):
+    j = 2
+    while(j <= (i/j)):             
+        if not (i%j): break
+        j = j + 1
+    if (j > i/j): print("是素数",i)
+    i = i + 1
+
+print("Good bye!")
+```
+
+
